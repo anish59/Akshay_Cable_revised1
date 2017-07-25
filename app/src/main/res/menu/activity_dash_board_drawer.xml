@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Operations">
+        <menu>
+
+            <item
+                android:id="@+id/nav_payment"
+                android:icon="@drawable/payment_black"
+                android:title="Payments" />
+
+            <item
+                android:id="@+id/nav_collection"
+                android:icon="@drawable/collection_1_black"
+                android:title="Collections" />
+
+            <item
+                android:id="@+id/nav_complain"
+                android:icon="@drawable/complain_black"
+                android:title="Complaints" />
+
+            <item
+                android:id="@+id/nav_customer"
+                android:icon="@drawable/customer_black"
+                android:title="Customers" />
+
+            <item
+                android:id="@+id/nav_sync"
+                android:icon="@drawable/ic_sync_white_24dp"
+                android:title="Sync" />
+
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
+
+</menu>
