@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -39,6 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.mtaj.mtaj_08.cableplus_new.helpers.Utils;
 //import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
 
 import org.apache.http.HttpEntity;
@@ -81,13 +83,13 @@ public class PaymentFragment extends Fragment {
 
     JSONObject jsonobj;
 
-    ArrayList<HashMap<String,String>> areadetails=new ArrayList<HashMap<String, String>>();
+    ArrayList<HashMap<String, String>> areadetails = new ArrayList<HashMap<String, String>>();
 
-    TextView tvtotalcol,tvtotaloa;
+    TextView tvtotalcol, tvtotaloa;
 
     FloatingActionButton fabsearch;
 
-    String siteurl,uid,cid,aid,eid,URL;
+    String siteurl, uid, cid, aid, eid, URL;
 
     RequestQueue requestQueue;
 
@@ -101,7 +103,7 @@ public class PaymentFragment extends Fragment {
 
     RelativeLayout rlmain;
 
-    int mPage=0;
+    int mPage = 0;
 
     DBHelper myDB;
 
@@ -109,40 +111,35 @@ public class PaymentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Context con=getActivity();
+        Context con = getActivity();
 
-        View vc=inflater.inflate(R.layout.payment,null);
+        View vc = inflater.inflate(R.layout.payment, null);
 
-        final SharedPreferences pref=con.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        final SharedPreferences pref = con.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        if(pref.getBoolean("IsBilling",true))
-        {
-            url=getArguments().getString("url");
+        if (pref.getBoolean("IsBilling", true)) {
+            url = getArguments().getString("url");
 
             //Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
 
-            if(url.equals("-"))
-            {
+            if (url.equals("-")) {
                 //Toast.makeText(getContext(),"A="+myDB.AreaCount(), Toast.LENGTH_SHORT).show();
 
                 //loadOfflineData();
 
-                vc= inflater.inflate(R.layout.payment,null);
+                vc = inflater.inflate(R.layout.payment, null);
 
-            }
-            else
-            {
+            } else {
                 CallVolleys(url);
-              //  new JSONAsynk().execute(new String[]{url});
-                vc= inflater.inflate(R.layout.payment,null);
+                //  new JSONAsynk().execute(new String[]{url});
+                vc = inflater.inflate(R.layout.payment, null);
 
             }
 
-        }
+            //vc.setBackground(Utils.getGradientDrawable(getContext(), R.color.colorPrimaryLight, R.color.colorPrimary, R.color.colorPrimaryDark, GradientDrawable.Orientation.TOP_BOTTOM));
 
-        else
-        {
-            vc= inflater.inflate(R.layout.no_access_layout,null);
+        } else {
+            vc = inflater.inflate(R.layout.no_access_layout, null);
         }
 
         return vc;
@@ -152,7 +149,7 @@ public class PaymentFragment extends Fragment {
     public void onViewCreated(View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(pref.getBoolean("IsBilling",true)) {
+        if (pref.getBoolean("IsBilling", true)) {
 
             lvarealist = (ListView) view.findViewById(R.id.listView);
             fabsearch = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -162,30 +159,27 @@ public class PaymentFragment extends Fragment {
 
             swrefresh = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
 
-            rlmain=(RelativeLayout)view.findViewById(R.id.rlmain);
+            rlmain = (RelativeLayout) view.findViewById(R.id.rlmain);
 
-           // paymentAreaListAdapter =new PaymentAreaListAdapter(getContext(),areadetails);
+            // paymentAreaListAdapter =new PaymentAreaListAdapter(getContext(),areadetails);
 
-          //  lvarealist.setAdapter(paymentAreaListAdapter);
+            //  lvarealist.setAdapter(paymentAreaListAdapter);
 
-            if(url.equals("-"))
-            {
+            if (url.equals("-")) {
 
-                myDB=new DBHelper(getContext());
+                myDB = new DBHelper(getContext());
 
-                double totalos=0.0,totalcol=0.0;
+                double totalos = 0.0, totalcol = 0.0;
 
-                Cursor c=myDB.getAreas();
+                Cursor c = myDB.getAreas();
 
                 //swrefresh.setEnabled(false);
 
                 DecimalFormat format = new DecimalFormat();
                 format.setDecimalSeparatorAlwaysShown(false);
 
-                if(c.getCount()>0)
-                {
-                    if(c.moveToFirst())
-                    {
+                if (c.getCount() > 0) {
+                    if (c.moveToFirst()) {
                         do {
 
                             String aid = c.getString(c.getColumnIndex("AREA_ID"));
@@ -194,8 +188,8 @@ public class PaymentFragment extends Fragment {
                             String Aoa = c.getString(c.getColumnIndex("AREA_OUTSTANDING"));
                             String Acol = c.getString(c.getColumnIndex("AREA_COLLECTION"));
 
-                            totalos=totalos+Double.parseDouble(Aoa);
-                            totalcol=totalcol+Double.parseDouble(Acol);
+                            totalos = totalos + Double.parseDouble(Aoa);
+                            totalcol = totalcol + Double.parseDouble(Acol);
 
                             HashMap<String, String> map = new HashMap<>();
 
@@ -204,12 +198,12 @@ public class PaymentFragment extends Fragment {
                             map.put("AreaCode", acode);
                             /*map.put("Outstanding", str+Aoa);
                             map.put("Collection", str+Acol);*/
-                             map.put("Outstanding", str+format.format(Double.parseDouble(Aoa)));
+                            map.put("Outstanding", str + format.format(Double.parseDouble(Aoa)));
                             map.put("Collection", str + format.format(Double.parseDouble(Acol)));
 
                             areadetails.add(map);
 
-                        }while (c.moveToNext());
+                        } while (c.moveToNext());
                     }
 
                     ///Toast.makeText(getContext(),"**"+ areadetails.size(), Toast.LENGTH_SHORT).show();
@@ -233,20 +227,18 @@ public class PaymentFragment extends Fragment {
                     String tc = String.valueOf(totalcol);
                     String toa = String.valueOf(totalos);
 
-                    tvtotalcol.setText(str+format.format(Double.parseDouble(tc)));
+                    tvtotalcol.setText(str + format.format(Double.parseDouble(tc)));
                     tvtotaloa.setText(str + format.format(Double.parseDouble(toa)));
 
                     swrefresh.setEnabled(false);
 
                 }
 
-            }
-            else {
+            } else {
 
                 da = new SimpleAdapter(getContext(), areadetails, R.layout.arealist, new String[]{"AreaName", "Collection", "Outstanding"}, new int[]{R.id.textView2, R.id.textView24, R.id.textView26});
                 lvarealist.setAdapter(da);
             }
-
 
 
             swrefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -270,7 +262,7 @@ public class PaymentFragment extends Fragment {
                         }
                     } else {
                         areadetails.clear();
-                        double totalos=0.0,totalcol=0.0;
+                        double totalos = 0.0, totalcol = 0.0;
 
                         Cursor c = myDB.getAreas();
 
@@ -289,8 +281,8 @@ public class PaymentFragment extends Fragment {
                                     String Aoa = c.getString(c.getColumnIndex("AREA_OUTSTANDING"));
                                     String Acol = c.getString(c.getColumnIndex("AREA_COLLECTION"));
 
-                                    totalos=totalos+Double.parseDouble(Aoa);
-                                    totalcol=totalcol+Double.parseDouble(Acol);
+                                    totalos = totalos + Double.parseDouble(Aoa);
+                                    totalcol = totalcol + Double.parseDouble(Acol);
 
                                     HashMap<String, String> map = new HashMap<>();
 
@@ -307,7 +299,7 @@ public class PaymentFragment extends Fragment {
                                 } while (c.moveToNext());
                             }
 
-                           // Toast.makeText(getContext(), "**" + areadetails.size(), Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getContext(), "**" + areadetails.size(), Toast.LENGTH_SHORT).show();
 
                             rlmain.setVisibility(View.VISIBLE);
 
@@ -326,7 +318,7 @@ public class PaymentFragment extends Fragment {
                             String tc = String.valueOf(totalcol);
                             String toa = String.valueOf(totalos);
 
-                            tvtotalcol.setText(str+format.format(Double.parseDouble(tc)));
+                            tvtotalcol.setText(str + format.format(Double.parseDouble(tc)));
                             tvtotaloa.setText(str + format.format(Double.parseDouble(toa)));
 
                             swrefresh.setRefreshing(false);
@@ -423,9 +415,9 @@ public class PaymentFragment extends Fragment {
                 @Override
                 public void loadMore(int page, int totalItemsCount) {
 
-                   // mPage = page;
+                    // mPage = page;
 
-                    if(!url.equals("-")) {
+                    if (!url.equals("-")) {
 
                         mPage = mPage + 1;
 
@@ -441,9 +433,9 @@ public class PaymentFragment extends Fragment {
                 @Override
                 public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-                        if (lvarealist.getChildAt(0) != null) {
-                            swrefresh.setEnabled(lvarealist.getFirstVisiblePosition() == 0 && lvarealist.getChildAt(0).getTop() == 0);
-                        }
+                    if (lvarealist.getChildAt(0) != null) {
+                        swrefresh.setEnabled(lvarealist.getFirstVisiblePosition() == 0 && lvarealist.getChildAt(0).getTop() == 0);
+                    }
 
                     super.onScrollStateChanged(view, scrollState);
                 }
@@ -476,16 +468,14 @@ public class PaymentFragment extends Fragment {
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
-                                if(!url.equals("-")) {
+                                if (!url.equals("-")) {
 
                                     URL = siteurl + "/SearchCustomerForCollectionApp";
 
                                     //Toast.makeText(getContext(), v.getText().toString(), Toast.LENGTH_SHORT).show();
 
                                     CallVolley(URL, v.getText().toString());
-                                }
-                                else
-                                {
+                                } else {
                                     try {
 
                                         Cursor c = myDB.SearchCustomer(v.getText().toString());
@@ -500,7 +490,7 @@ public class PaymentFragment extends Fragment {
                                                 String cid = c.getString(c.getColumnIndex(myDB.PK_CUSTOMER_IDD));
                                                 String bid = c.getString(c.getColumnIndex(myDB.BILL_ID));
 
-                                               // Toast.makeText(getContext(), name + acno + cid + bid, Toast.LENGTH_SHORT).show();
+                                                // Toast.makeText(getContext(), name + acno + cid + bid, Toast.LENGTH_SHORT).show();
 
                                                 Intent i = new Intent(getContext(), CustomerDetail_Offline.class);
                                                 i.putExtra("cname", name);
@@ -513,11 +503,9 @@ public class PaymentFragment extends Fragment {
                                         } else {
                                             Toast.makeText(getContext(), "No Customer found..!", Toast.LENGTH_LONG).show();
                                         }
-                                    }
-                                    catch (Exception e)
-                                    {
+                                    } catch (Exception e) {
                                         e.printStackTrace();
-                                        Log.e("Error:",e.toString());
+                                        Log.e("Error:", e.toString());
                                     }
 
                                 }
@@ -537,17 +525,15 @@ public class PaymentFragment extends Fragment {
         }
 
 
-
-
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState){
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
-       // paymentAreaListAdapter=new PaymentAreaListAdapter(getContext(),areadetails);
+        // paymentAreaListAdapter=new PaymentAreaListAdapter(getContext(),areadetails);
 
         final Context con = getActivity();
 
@@ -561,21 +547,20 @@ public class PaymentFragment extends Fragment {
     }
 
 
-    public JSONObject makeHttpRequest(String url){
+    public JSONObject makeHttpRequest(String url) {
         DefaultHttpClient httpclient = new DefaultHttpClient();
-        HttpGet httppost=new HttpGet(url);
-        try{
+        HttpGet httppost = new HttpGet(url);
+        try {
             HttpResponse httpresponse = httpclient.execute(httppost);
             HttpEntity httpentity = httpresponse.getEntity();
             is = httpentity.getContent();
-        }catch (ClientProtocolException e){
+        } catch (ClientProtocolException e) {
             e.printStackTrace();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try{
-
+        try {
 
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -584,15 +569,13 @@ public class PaymentFragment extends Fragment {
 
             StringBuilder sb = new StringBuilder();
             String line = null;
-            try{
-                if(reader!=null) {
+            try {
+                if (reader != null) {
 
                     while ((line = reader.readLine()) != null) {
                         sb.append(line);
                     }
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getActivity(), "No data", Toast.LENGTH_SHORT).show();
                 }
 
@@ -600,7 +583,7 @@ public class PaymentFragment extends Fragment {
                 json = sb.toString();
 
                 // json= sb.toString().substring(0, sb.toString().length()-1);
-                try{
+                try {
                     jobj = new JSONObject(json);
 
                     // JSONArray jarrays=new JSONArray(json);
@@ -611,14 +594,14 @@ public class PaymentFragment extends Fragment {
 
                     // jarr =(JSONArray)jsonparse.parse(json);
                     // jobj = jarr.getJSONObject(0);
-                }catch (JSONException e){
-                    Toast.makeText(getActivity(), "**"+e, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    Toast.makeText(getActivity(), "**" + e, Toast.LENGTH_SHORT).show();
                 }
-            }catch(IOException e){
-                Toast.makeText(getActivity(), "**"+e, Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                Toast.makeText(getActivity(), "**" + e, Toast.LENGTH_SHORT).show();
             }
-        }catch (UnsupportedEncodingException e){
-            Toast.makeText(getActivity(), "**"+e, Toast.LENGTH_SHORT).show();
+        } catch (UnsupportedEncodingException e) {
+            Toast.makeText(getActivity(), "**" + e, Toast.LENGTH_SHORT).show();
         }
        /* catch (ParseException e){
             Toast.makeText(MainActivity.this, "**"+e, Toast.LENGTH_SHORT).show();
@@ -626,12 +609,11 @@ public class PaymentFragment extends Fragment {
         return jobj;
     }
 
-    public void CallVolley(String a,String text)
-    {
+    public void CallVolley(String a, String text) {
 
 
         final SpotsDialog spload;
-        spload=new SpotsDialog(getActivity(),R.style.Custom);
+        spload = new SpotsDialog(getActivity(), R.style.Custom);
         spload.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         spload.setCancelable(true);
         spload.show();
@@ -639,16 +621,16 @@ public class PaymentFragment extends Fragment {
         try {
             //jsonobj=makeHttpRequest(params[0]);
 
-            HashMap<String,String> map=new HashMap<>();
-            map.put("startindex","0");
-            map.put("noofrecords","10000");
-            map.put("contractorid",cid);
-            map.put("userId",uid);
-            map.put("entityId",eid);
-            map.put("filterCustomer",text);
+            HashMap<String, String> map = new HashMap<>();
+            map.put("startindex", "0");
+            map.put("noofrecords", "10000");
+            map.put("contractorid", cid);
+            map.put("userId", uid);
+            map.put("entityId", eid);
+            map.put("filterCustomer", text);
 
             JsonObjectRequest obreq;
-            obreq = new JsonObjectRequest(Request.Method.POST,a,new JSONObject(map),
+            obreq = new JsonObjectRequest(Request.Method.POST, a, new JSONObject(map),
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -656,41 +638,35 @@ public class PaymentFragment extends Fragment {
 
                                 spload.dismiss();
 
-                                try
-                                {
-                                    if(response.getString("status").toString().equals("True"))
-                                    {
-                                        String title=null,acno=null,custid=null;
+                                try {
+                                    if (response.getString("status").toString().equals("True")) {
+                                        String title = null, acno = null, custid = null;
                                         final JSONArray entityarray = response.getJSONArray("CustomerInfoList");
 
                                         for (int i = 0; i < entityarray.length(); i++) {
                                             JSONObject e = (JSONObject) entityarray.get(i);
 
-                                            title= e.getString("Name");
+                                            title = e.getString("Name");
                                             acno = e.getString("AccountNo");
                                             custid = e.getString("CustomerId");
                                         }
 
                                         Intent i = new Intent(getContext(), CustomerDetails.class);
-                                        i.putExtra("cname",title);
-                                        i.putExtra("A/cNo",acno);
-                                        i.putExtra("CustomerId",custid);
-                                       // i.putExtra("from","Payment");
-                                       // editor.putString("from", "Payment");
+                                        i.putExtra("cname", title);
+                                        i.putExtra("A/cNo", acno);
+                                        i.putExtra("CustomerId", custid);
+                                        // i.putExtra("from","Payment");
+                                        // editor.putString("from", "Payment");
                                         startActivity(i);
                                     }
 
-                                }
-                                catch (JSONException e)
-                                {
-                                    Toast.makeText(getContext(), "Error:++"+e, Toast.LENGTH_SHORT).show();
+                                } catch (JSONException e) {
+                                    Toast.makeText(getContext(), "Error:++" + e, Toast.LENGTH_SHORT).show();
                                 }
 
                                 // Toast.makeText(CustomerSignatureActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                            catch (Exception e)
-                            {
-                                Toast.makeText(getContext(), "error--"+e, Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                Toast.makeText(getContext(), "error--" + e, Toast.LENGTH_SHORT).show();
                             }
                         }
                     },
@@ -698,7 +674,7 @@ public class PaymentFragment extends Fragment {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
-                            Toast.makeText(getContext(), "errorr++"+error.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "errorr++" + error.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -709,29 +685,27 @@ public class PaymentFragment extends Fragment {
             // Adds the JSON object request "obreq" to the request queue
             requestQueue.add(obreq);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Toast.makeText(getContext(), "--" + e, Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    private class JSONAsynk extends AsyncTask<String,String,JSONObject>
-    {
+    private class JSONAsynk extends AsyncTask<String, String, JSONObject> {
 
         private ProgressDialog pDialog;
-       // public DotProgressBar dtprogoress;
+        // public DotProgressBar dtprogoress;
 
         SpotsDialog spload;
 
 
-        JSONObject jsn1,jsn,jsnmain;
+        JSONObject jsn1, jsn, jsnmain;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            spload=new SpotsDialog(getActivity(),R.style.Custom);
+            spload = new SpotsDialog(getActivity(), R.style.Custom);
             spload.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             spload.setCancelable(true);
             spload.show();
@@ -743,7 +717,7 @@ public class PaymentFragment extends Fragment {
 
             try {
 
-                jsonobj=makeHttpRequest(params[0]);
+                jsonobj = makeHttpRequest(params[0]);
 
 
             } catch (Exception e) {
@@ -752,7 +726,7 @@ public class PaymentFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            return  jsonobj;
+            return jsonobj;
 
 
         }
@@ -761,18 +735,16 @@ public class PaymentFragment extends Fragment {
         protected void onPostExecute(JSONObject json) {
             spload.dismiss();
 
-            try
-            {
+            try {
                 areadetails.clear();
 
-               // Toast.makeText(getContext(), json.toString(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(), json.toString(), Toast.LENGTH_SHORT).show();
 
-                if(json.getString("status").toString().equals("True"))
-                {
+                if (json.getString("status").toString().equals("True")) {
                     DecimalFormat format = new DecimalFormat();
                     format.setDecimalSeparatorAlwaysShown(false);
 
-                  //  Toast.makeText(getContext(), json.toString(), Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getContext(), json.toString(), Toast.LENGTH_SHORT).show();
 
                     final JSONArray entityarray = jsonobj.getJSONArray("AreaInfoList");
 
@@ -785,29 +757,28 @@ public class PaymentFragment extends Fragment {
                         String Aoa = e.getString("Outstanding");
                         String Acol = e.getString("Collection");
 
-                        HashMap<String,String> map=new HashMap<>();
+                        HashMap<String, String> map = new HashMap<>();
 
-                        map.put("AreaId",aid);
-                        map.put("AreaName",aname);
-                        map.put("AreaCode",acode);
-                        map.put("Outstanding",format.format(Double.parseDouble(Aoa)));
-                        map.put("Collection",format.format(Double.parseDouble(Acol)));
+                        map.put("AreaId", aid);
+                        map.put("AreaName", aname);
+                        map.put("AreaCode", acode);
+                        map.put("Outstanding", format.format(Double.parseDouble(Aoa)));
+                        map.put("Collection", format.format(Double.parseDouble(Acol)));
 
                         areadetails.add(map);
 
                     }
 
-                   // da = new SimpleAdapter(getContext(), areadetails, R.layout.arealist, new String[]{"AreaName", "Collection", "Outstanding"}, new int[]{R.id.textView2, R.id.textView24, R.id.textView26});
-                   // lvarealist.setAdapter(da);
+                    // da = new SimpleAdapter(getContext(), areadetails, R.layout.arealist, new String[]{"AreaName", "Collection", "Outstanding"}, new int[]{R.id.textView2, R.id.textView24, R.id.textView26});
+                    // lvarealist.setAdapter(da);
 
                     //lvarealist.setAdapter(new PaymentAreaListAdapter(getContext(),areadetails));
 
 
-
                     paymentAreaListAdapter.notifyDataSetChanged();
 
-                    String tc=json.getString("TotalCollection").toString();
-                    String toa=json.getString("TotalOutstanding").toString();
+                    String tc = json.getString("TotalCollection").toString();
+                    String toa = json.getString("TotalOutstanding").toString();
 
                     tvtotalcol.setText(format.format(Double.parseDouble(tc)));
                     tvtotaloa.setText(format.format(Double.parseDouble(toa)));
@@ -818,9 +789,7 @@ public class PaymentFragment extends Fragment {
 
                 }
 
-            }
-            catch (JSONException e)
-            {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -828,141 +797,135 @@ public class PaymentFragment extends Fragment {
 
     }
 
-    public void CallVolleys(String a)
-    {
+    public void CallVolleys(String a) {
         JsonObjectRequest obreqs;
 
         final SpotsDialog spload;
-        spload=new SpotsDialog(getActivity(),R.style.Custom);
+        spload = new SpotsDialog(getActivity(), R.style.Custom);
         spload.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         spload.setCancelable(true);
         spload.show();
 
-            //jsonobj=makeHttpRequest(params[0]);
-          //  URL=siteurl+"/GetAreaByUserForCollectionApp?contractorId="+cid+"&userId="+uid+"&entityId="+pref.getString("Entityids","").toString();
+        //jsonobj=makeHttpRequest(params[0]);
+        //  URL=siteurl+"/GetAreaByUserForCollectionApp?contractorId="+cid+"&userId="+uid+"&entityId="+pref.getString("Entityids","").toString();
 
 
-            HashMap<String,String> map=new HashMap<>();
-            map.put("contractorId",cid);
-            map.put("userId",uid);
-            map.put("entityId",eid);
-            map.put("startindex",String.valueOf(mPage));
-            map.put("noofrecords","10");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("contractorId", cid);
+        map.put("userId", uid);
+        map.put("entityId", eid);
+        map.put("startindex", String.valueOf(mPage));
+        map.put("noofrecords", "10");
 
 
-            obreqs = new JsonObjectRequest(Request.Method.POST,a,new JSONObject(map),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                          //  try {
+        obreqs = new JsonObjectRequest(Request.Method.POST, a, new JSONObject(map),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //  try {
 
-                                spload.dismiss();
+                        spload.dismiss();
 
-                                try {
+                        try {
 
 
-                                  //  Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                            //  Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
 
-                                    if (response.getString("status").toString().equals("True")) {
+                            if (response.getString("status").toString().equals("True")) {
 
-                                        rlmain.setVisibility(View.VISIBLE);
-                                        DecimalFormat format = new DecimalFormat();
-                                        format.setDecimalSeparatorAlwaysShown(false);
+                                rlmain.setVisibility(View.VISIBLE);
+                                DecimalFormat format = new DecimalFormat();
+                                format.setDecimalSeparatorAlwaysShown(false);
 
-                                        //  Toast.makeText(getContext(), json.toString(), Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(getContext(), json.toString(), Toast.LENGTH_SHORT).show();
 
-                                        final JSONArray entityarray = response.getJSONArray("AreaInfoList");
+                                final JSONArray entityarray = response.getJSONArray("AreaInfoList");
 
-                                        for (int i = 0; i < entityarray.length(); i++) {
-                                            JSONObject e = (JSONObject) entityarray.get(i);
+                                for (int i = 0; i < entityarray.length(); i++) {
+                                    JSONObject e = (JSONObject) entityarray.get(i);
 
-                                            String aid = e.getString("AreaId");
-                                            String aname = e.getString("AreaName");
-                                            String acode = e.getString("AreaCode");
-                                            String Aoa = e.getString("Outstanding");
-                                            String Acol = e.getString("Collection");
+                                    String aid = e.getString("AreaId");
+                                    String aname = e.getString("AreaName");
+                                    String acode = e.getString("AreaCode");
+                                    String Aoa = e.getString("Outstanding");
+                                    String Acol = e.getString("Collection");
 
-                                            HashMap<String, String> map = new HashMap<>();
+                                    HashMap<String, String> map = new HashMap<>();
 
-                                            map.put("AreaId", aid);
-                                            map.put("AreaName", aname);
-                                            map.put("AreaCode", acode);
-                                            map.put("Outstanding", str+format.format(Double.parseDouble(Aoa)));
-                                            map.put("Collection", str+format.format(Double.parseDouble(Acol)));
+                                    map.put("AreaId", aid);
+                                    map.put("AreaName", aname);
+                                    map.put("AreaCode", acode);
+                                    map.put("Outstanding", str + format.format(Double.parseDouble(Aoa)));
+                                    map.put("Collection", str + format.format(Double.parseDouble(Acol)));
 
-                                            areadetails.add(map);
+                                    areadetails.add(map);
 
-                                        }
+                                }
 
                                         /* da = new SimpleAdapter(getContext(), areadetails, R.layout.arealist, new String[]{"AreaName", "Collection", "Outstanding"}, new int[]{R.id.textView2, R.id.textView24, R.id.textView26});
                                          lvarealist.setAdapter(da);*/
 
-                                        da.notifyDataSetChanged();
+                                da.notifyDataSetChanged();
 
-                                        //lvarealist.setAdapter(new PaymentAreaListAdapter(getContext(),areadetails));
+                                //lvarealist.setAdapter(new PaymentAreaListAdapter(getContext(),areadetails));
 
-                                      //  paymentAreaListAdapter=new PaymentAreaListAdapter(getContext(),areadetails);
+                                //  paymentAreaListAdapter=new PaymentAreaListAdapter(getContext(),areadetails);
 
-                                       // lvarealist.setAdapter(new PaymentAreaListAdapter(getContext(),areadetails));
+                                // lvarealist.setAdapter(new PaymentAreaListAdapter(getContext(),areadetails));
 
-                                       // ((BaseAdapter)lvarealist.getAdapter()).notifyDataSetChanged();
+                                // ((BaseAdapter)lvarealist.getAdapter()).notifyDataSetChanged();
 
-                                        String tc = response.getString("TotalCollection").toString();
-                                        String toa = response.getString("TotalOutstanding").toString();
+                                String tc = response.getString("TotalCollection").toString();
+                                String toa = response.getString("TotalOutstanding").toString();
 
-                                        tvtotalcol.setText(str+format.format(Double.parseDouble(tc)));
-                                        tvtotaloa.setText(str+format.format(Double.parseDouble(toa)));
+                                tvtotalcol.setText(str + format.format(Double.parseDouble(tc)));
+                                tvtotaloa.setText(str + format.format(Double.parseDouble(toa)));
 
-                                        swrefresh.setRefreshing(false);
+                                swrefresh.setRefreshing(false);
 
-                                        // Toast.makeText(getContext(),s1+"--"+s2+"--"+s3+"--"+s4+"--"+s5+"--"+s6+"--"+s7+"--"+s8, Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getContext(),s1+"--"+s2+"--"+s3+"--"+s4+"--"+s5+"--"+s6+"--"+s7+"--"+s8, Toast.LENGTH_SHORT).show();
 
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(getContext(), response.getString("message").toString(), Toast.LENGTH_SHORT).show();
-                                    }
+                            } else {
+                                Toast.makeText(getContext(), response.getString("message").toString(), Toast.LENGTH_SHORT).show();
+                            }
 
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                            /* } catch (Exception e) {
                                 Toast.makeText(getContext(), "error--" + e, Toast.LENGTH_LONG).show();
                             }*/
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-                            Toast.makeText(getContext(), "errorr++"+error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "errorr++" + error.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                    }
+                });
 
-            obreqs.setRetryPolicy(new DefaultRetryPolicy(600000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            // Adds the JSON object request "obreq" to the request queue
-            requestQueue.add(obreqs);
+        obreqs.setRetryPolicy(new DefaultRetryPolicy(600000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        // Adds the JSON object request "obreq" to the request queue
+        requestQueue.add(obreqs);
 
     }
 
-    public void loadOfflineData()
-    {
-        Cursor c=myDB.getAreas();
+    public void loadOfflineData() {
+        Cursor c = myDB.getAreas();
 
         //swrefresh.setEnabled(false);
 
         DecimalFormat format = new DecimalFormat();
         format.setDecimalSeparatorAlwaysShown(false);
 
-        if(c.getCount()>0)
-        {
-            if(c.moveToFirst())
-            {
+        if (c.getCount() > 0) {
+            if (c.moveToFirst()) {
                 do {
 
                     String aid = c.getString(c.getColumnIndex("AREA_ID"));
@@ -976,17 +939,17 @@ public class PaymentFragment extends Fragment {
                     map.put("AreaId", aid);
                     map.put("AreaName", aname);
                     map.put("AreaCode", acode);
-                    map.put("Outstanding", str+Aoa);
-                    map.put("Collection", str+Acol);
-                   // map.put("Outstanding", str+format.format(Double.parseDouble(Aoa)));
+                    map.put("Outstanding", str + Aoa);
+                    map.put("Collection", str + Acol);
+                    // map.put("Outstanding", str+format.format(Double.parseDouble(Aoa)));
                     ///map.put("Collection", str + format.format(Double.parseDouble(Acol)));
 
                     areadetails.add(map);
 
-                }while (c.moveToNext());
+                } while (c.moveToNext());
             }
 
-            Toast.makeText(getContext(),"**"+ areadetails.size(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "**" + areadetails.size(), Toast.LENGTH_SHORT).show();
 
         }
 

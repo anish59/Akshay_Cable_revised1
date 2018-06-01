@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+        "merged": "/Users/atirek.pothiwala/Android/CableApp/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/atirek.pothiwala/.gradle/caches/transforms-1/files-1.1/appcompat-v7-24.2.1.aar/407f3bb1d0b13e9bded19502baa8e8df/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+        "merged": "/Users/atirek.pothiwala/Android/CableApp/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/atirek.pothiwala/.gradle/caches/transforms-1/files-1.1/appcompat-v7-24.2.1.aar/407f3bb1d0b13e9bded19502baa8e8df/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     }
 ]

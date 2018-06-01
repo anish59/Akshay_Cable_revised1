@@ -1,6 +1,6 @@
 [
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
+        "merged": "/Users/atirek.pothiwala/Android/CableApp/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/atirek.pothiwala/.gradle/caches/transforms-1/files-1.1/design-24.2.1.aar/45d06d5e863472e65383b24018e17809/res/layout-sw600dp-v13/design_layout_snackbar.xml"
     }
 ]
