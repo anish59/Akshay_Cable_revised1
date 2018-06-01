@@ -23,7 +23,7 @@
     <uses-permission android:name="com.mtaj.mtaj_08.cableplus.permission.C2D_MESSAGE" />
 
     <application
-        android:name="com.mtaj.mtaj_08.cableplus_new.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launcher"
@@ -36,7 +36,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.LoginActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan">
@@ -47,13 +47,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.DashBoard"
+            android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.CustomerListActivity"
-            android:parentActivityName="com.mtaj.mtaj_08.cableplus_new.DashBoard"
+            android:name=".CustomerListActivity"
+            android:parentActivityName=".DashBoard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <meta-data
@@ -61,7 +61,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.CustomerDetails"
+            android:name=".CustomerDetails"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <meta-data
@@ -69,25 +69,25 @@
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerListActivity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.TransactionStatusActivity"
+            android:name=".TransactionStatusActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.CustomerSignatureActivity"
+            android:name=".CustomerSignatureActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerDetails" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Collection_Area_Activity"
+            android:name=".Collection_Area_Activity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.activity_collection_customerdetail"
+            android:name=".activity_collection_customerdetail"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <meta-data
@@ -98,14 +98,14 @@
                 android:value="com.mtaj.mtaj_08.cableplus_new.Collection_Area_Activity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.ComplainDetails"
+            android:name=".ComplainDetails"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.SearchWithCustomerListInComplains"
+            android:name=".SearchWithCustomerListInComplains"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.searchable"
@@ -115,21 +115,21 @@
                 android:value="com.mtaj.mtaj_08.cableplus_new.AreaListInCustomers" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.ComplainListviaCustomerActivity"
+            android:name=".ComplainListviaCustomerActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerMasterDetailsActivity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.AreaListInCustomers"
+            android:name=".AreaListInCustomers"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.CustomerMasterDetailsActivity"
+            android:name=".CustomerMasterDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <meta-data
@@ -137,35 +137,35 @@
                 android:value="com.mtaj.mtaj_08.cableplus_new.AreaListInCustomers" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Sms_log"
+            android:name=".Sms_log"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerMasterDetailsActivity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Bill_details"
+            android:name=".Bill_details"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerMasterDetailsActivity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.PackageDetails"
+            android:name=".PackageDetails"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerMasterDetailsActivity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Contact_details"
+            android:name=".Contact_details"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerMasterDetailsActivity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Payment_details"
+            android:name=".Payment_details"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -173,22 +173,25 @@
         </activity>
 
         <receiver
-            android:name="com.mtaj.mtaj_08.cableplus_new.ConnectivityReceiver"
+            android:name=".ConnectivityReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.mtaj.mtaj_08.cableplus_new.ScreenReceiver"
-            android:enabled="true"></receiver>
+            android:name=".ScreenReceiver"
+            android:enabled="true" />
 
-       <!-- <service
+        <!--
+            <service
             android:name=".TrackLocationService"
-            android:process=":tracklocation_service" />-->
+            android:process=":tracklocation_service" />
+        -->
 
-        <service android:name="com.mtaj.mtaj_08.cableplus_new.TestLocationService"
-            android:process=":testlocation_service"></service>
+        <service
+            android:name=".TestLocationService"
+            android:process=":testlocation_service" />
 
         <!--
         <receiver
@@ -204,10 +207,10 @@
         <protected-broadcast android:name="android.location.GPS_ENABLED_CHANGE" />
 
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.NoConnectionActivity"
+            android:name=".NoConnectionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.AddCustomer_1"
+            android:name=".AddCustomer_1"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <meta-data
@@ -215,14 +218,14 @@
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.AddCustomer_2"
+            android:name=".AddCustomer_2"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.AddCustomer_4"
+            android:name=".AddCustomer_4"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <meta-data
@@ -230,21 +233,21 @@
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.AddCustomer_3"
+            android:name=".AddCustomer_3"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Remider_details"
+            android:name=".Remider_details"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.CustomerMasterDetailsActivity" />
         </activity>
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Attachment_details"
+            android:name=".Attachment_details"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -273,14 +276,14 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.MapsActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mtaj.mtaj_08.cableplus_new.DashBoard" />
         </activity>
-        <activity android:name="com.mtaj.mtaj_08.cableplus_new.FullImageActivity" />
+        <activity android:name=".FullImageActivity" />
 
         <!--
         <service
@@ -316,34 +319,34 @@
         </service>
         -->
 
-        <service android:name="com.mtaj.mtaj_08.cableplus_new.MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name="com.mtaj.mtaj_08.cableplus_new.MyFirebaseInstanceIDService">
+        <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.Comments_List_Activity"
+            android:name=".Comments_List_Activity"
             android:allowTaskReparenting="true"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:taskAffinity="" />
-        <activity android:name="com.mtaj.mtaj_08.cableplus_new.ReminderListActivity" />
-        <activity android:name="com.mtaj.mtaj_08.cableplus_new.AlertListActivity" />
-        <activity android:name="com.mtaj.mtaj_08.cableplus_new.SyncData" />
+        <activity android:name=".ReminderListActivity" />
+        <activity android:name=".AlertListActivity" />
+        <activity android:name=".SyncData" />
         <activity
-            android:name="com.mtaj.mtaj_08.cableplus_new.CustomerDetail_Offline"
+            android:name=".CustomerDetail_Offline"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <receiver
-            android:name="com.mtaj.mtaj_08.cableplus_new.NetworkChangeReceiver"
+            android:name=".NetworkChangeReceiver"
             android:label="NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -351,8 +354,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.mtaj.mtaj_08.cableplus_new.ComplainSignatureActivity" />
-        <activity android:name="com.mtaj.mtaj_08.cableplus_new.Map_User_Tracking"></activity>
+        <activity android:name=".ComplainSignatureActivity" />
+        <activity android:name=".Map_User_Tracking" />
+        <activity android:name=".CustomerCommentList"></activity>
     </application>
 
 </manifest>

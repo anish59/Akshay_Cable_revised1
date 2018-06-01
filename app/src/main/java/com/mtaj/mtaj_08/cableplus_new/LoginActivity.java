@@ -500,7 +500,7 @@ private class JSONAsynk extends AsyncTask<String,String,JSONObject>
 
                 }
                 editor.putString("LoginStatus","login");
-                editor.putString("Name",name);
+                editor.putString("LoginName",name);
                 editor.putString("Userid",uid);
                 editor.putString("RoleId",rid);
                 editor.putString("RoleName",rname);

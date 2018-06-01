@@ -257,12 +257,12 @@ public class CollectionFragment extends Fragment {
                             editor.putString("selected_uid", userlist.get(position).get("UserId"));
                             editor.commit();
 
-                            /*Intent i = new Intent(getContext(), Collection_Area_Activity.class);
+                            Intent i = new Intent(getContext(), Collection_Area_Activity.class);
                             i.putExtra("Userthismonthcollection",userlist.get(position).get("Userthismonthcollection"));
-                            startActivity(i);*/
-
-                            Intent i = new Intent(getContext(), activity_collection_customerdetail.class);
                             startActivity(i);
+
+                            //Intent i = new Intent(getContext(), activity_collection_customerdetail.class);
+                            ///startActivity(i);
 
                         }
                     });

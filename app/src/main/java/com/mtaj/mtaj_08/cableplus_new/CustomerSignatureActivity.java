@@ -15,6 +15,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -65,6 +66,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
 
 import dmax.dialog.SpotsDialog;
 
@@ -123,6 +125,9 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
     boolean AllowRequest=true;
 
+    // variable to track event time
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,6 +168,7 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
         siteurl = pref.getString("SiteURL", "").toString();
         uid = pref.getString("Userid", "").toString();
+        cid=pref.getString("Contracotrid","").toString();
 
         calendar = Calendar.getInstance();
 
@@ -286,130 +292,86 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
         return img;
     }
 
-
-
-    public void getLOcation() {
-       /* boolean gpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!gpsStatus) {
-            Settings.Secure.putString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED, "network,gps");
-
-            String beforeEnable = Settings.Secure.getString (getApplicationContext().getContentResolver(),
-                    Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-            String newSet = String.format ("%s,%s",
-                    beforeEnable,
-                    LocationManager.GPS_PROVIDER);
-            try {
-                Settings.Secure.putString (getApplicationContext().getContentResolver(),
-                        Settings.Secure.LOCATION_PROVIDERS_ALLOWED,
-                        newSet);
-            } catch(Exception e) {}
-        }*/
-        //locationManager.requestLocationUpdates(
-        //      LocationManager.GPS_PROVIDER,
-        //     0,
-        //     1000, this);
-
-        if (locationManager != null) {
-            location = locationManager
-                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (location != null) {
-                latitude = String.valueOf(location.getLatitude());
-                longitude = String.valueOf(location.getLongitude());
-            }
-        }
-    }
-
     @Override
     public void onClick(View v) {
 
         hideKeyboard(this);
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
 
         switch (v.getId()) {
             case R.id.ibtn_clear:
                 mSignaturePad.clear();
                 break;
             case R.id.llconfirm:
-                if (mSignaturePad.isEmpty()) {
 
-                    //Toast.makeText(this, "Disable", Toast.LENGTH_SHORT).show();
+                if(findViewById(R.id.llconfirm).isEnabled()) {
+
+                    if (mSignaturePad.isEmpty()) {
+
+                        //findViewById(R.id.llconfirm).setEnabled(false);
+                        //findViewById(R.id.llconfirm).setClickable(false);
+                        disableView(findViewById(R.id.llconfirm));
+
+                        //Toast.makeText(this, "Disable", Toast.LENGTH_SHORT).show();
 
                    /* Snackbar snackbar = Snackbar
                             .make(v, "Please enter customer signature", Snackbar.LENGTH_LONG);
                     snackbar.show();*/
 
-                    signaturestring="-";
-                    SharedPreferences pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                        signaturestring = "-";
+                        SharedPreferences pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-                    if (pref.getString("from", "").equals("Payment")) {
+                        if (pref.getString("from", "").equals("Payment")) {
 
-                        displayLocation();
+                            displayLocation();
+
+                        } else if (from.equals("Payment")) {
+                            displayLocation();
+
+                        }
+
+                        if (from.equals("complain")) {
+                            URL = siteurl + "/ResolveComplain";
+
+                            CallVolleys(URL);
+                        }
+
+                        //  return;
+                    } else {
+
+
+                        //findViewById(R.id.llconfirm).setEnabled(false);
+                        disableView(findViewById(R.id.llconfirm));
+
+                        //Toast.makeText(this, "Disable", Toast.LENGTH_SHORT).show();
+
+                        SharedPreferences pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+
+                        signaturestring = "-";
+
+                        if (pref.getString("from", "").equals("Payment")) {
+
+                            // URL = siteurl + "/GenerateBillReceiptForCollectionApp";
+
+                            displayLocation();
+
+                        } else if (from.equals("Payment")) {
+                            // URL = siteurl + "/GenerateBillReceiptForCollectionApp";
+
+                            displayLocation();
+                        }
+
+                        if (from.equals("complain")) {
+                            URL = siteurl + "/ResolveComplain";
+
+                            CallVolleys(URL);
+                        }
 
                     }
-                    else if(from.equals("Payment"))
-                    {
-                        displayLocation();
-
-                    }
-
-                    if (from.equals("complain")) {
-                        URL = siteurl + "/ResolveComplain";
-
-                        CallVolleys(URL);
-                    }
-
-                    //  return;
-                } else {
-
-
-                    //findViewById(R.id.llconfirm).setEnabled(false);
-
-                    //Toast.makeText(this, "Disable", Toast.LENGTH_SHORT).show();
-
-                    SharedPreferences pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-
-                    signaturestring="-";
-
-                    if (pref.getString("from", "").equals("Payment")) {
-
-                       // URL = siteurl + "/GenerateBillReceiptForCollectionApp";
-
-                        // GPSon(getApplicationContext());
-                        //turnGpsOn(getApplicationContext());
-
-                        //
-                        // getLOcation();
-
-                        displayLocation();
-
-                      //  Toast.makeText(CustomerSignatureActivity.this, latitude + "--" + longitude, Toast.LENGTH_SHORT).show();
-
-
-                       // CallVolley(URL);
-                    }
-                    else if(from.equals("Payment"))
-                    {
-                        // URL = siteurl + "/GenerateBillReceiptForCollectionApp";
-
-                        // GPSon(getApplicationContext());
-                        //turnGpsOn(getApplicationContext());
-
-                        //
-                        // getLOcation();
-
-                        displayLocation();
-
-                        //  Toast.makeText(CustomerSignatureActivity.this, latitude + "--" + longitude, Toast.LENGTH_SHORT).show();
-
-
-                        // CallVolley(URL);
-                    }
-
-                    if (from.equals("complain")) {
-                        URL = siteurl + "/ResolveComplain";
-
-                        CallVolleys(URL);
-                    }
-
                 }
 
         }
@@ -441,7 +403,9 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
                 AllowRequest=true;
 
-                findViewById(R.id.llconfirm).setEnabled(true);
+                //findViewById(R.id.llconfirm).setEnabled(true);
+
+                enableView(findViewById(R.id.llconfirm));
 
             }
         });
@@ -479,7 +443,8 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
                                 try {
 
-                                    findViewById(R.id.llconfirm).setEnabled(true);
+                                    //findViewById(R.id.llconfirm).setEnabled(true);
+                                    enableView(findViewById(R.id.llconfirm));
 
                                     //Toast.makeText(CustomerSignatureActivity.this, "Enable", Toast.LENGTH_SHORT).show();
 
@@ -513,7 +478,9 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
                             spload.dismiss();
 
-                            findViewById(R.id.llconfirm).setEnabled(true);
+                            //findViewById(R.id.llconfirm).setEnabled(true);
+
+                            enableView(findViewById(R.id.llconfirm));
 
                             Toast.makeText(CustomerSignatureActivity.this, "errorr++" + error.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -559,7 +526,9 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
                                 spload.dismiss();
 
-                                findViewById(R.id.llconfirm).setEnabled(true);
+                                //findViewById(R.id.llconfirm).setEnabled(true);
+
+                                enableView(findViewById(R.id.llconfirm));
 
                                 try {
                                     if (response.getString("status").toString().equals("True")) {
@@ -695,7 +664,7 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
     }
 
-    private void displayLocation() {
+    public void displayLocation() {
 
         try
         {
@@ -722,16 +691,11 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
                         URL = siteurl + "/withdiscount";
 
-                        //Toast.makeText(CustomerSignatureActivity.this, latitude + "--" + longitude, Toast.LENGTH_SHORT).show();
-
-                        findViewById(R.id.llconfirm).setEnabled(false);
+                        disableView(findViewById(R.id.llconfirm));
 
                         if(AllowRequest) {
 
                             CallVolley(URL);
-                            
-                            //TestCall();
-
                         }
 
                     } else {
@@ -754,23 +718,12 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
                                 URL = siteurl + "/withdiscount";
 
-                                // GPSon(getApplicationContext());
-                                //turnGpsOn(getApplicationContext());
-
-                                //
-                                // getLOcation();
-
-                                // displayLocation();
-
-                                //Toast.makeText(CustomerSignatureActivity.this, latitude + "--" + longitude, Toast.LENGTH_SHORT).show();
-
-                                findViewById(R.id.llconfirm).setEnabled(false);
+                                disableView(findViewById(R.id.llconfirm));
 
                                 if(AllowRequest) {
 
                                     CallVolley(URL);
 
-                                    //TestCall();
                                 }
 
                             }
@@ -788,51 +741,49 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
             }
             else
             {
+                disableView(findViewById(R.id.llconfirm));
 
-                findViewById(R.id.llconfirm).setEnabled(false);
+                Long tsLong = System.currentTimeMillis()/1000;
+                String ts = tsLong.toString();
 
-               if(myDB.insertReceipt(custid,accno,billid,paidamount,paymode,cheqno,cheqdate,bankname,email,uid,signaturestring,rdate,"0.0","0.0",Discount,"","false"))
-               {
-                   if(myDB.UpdateOutstanding(custid,paidamount,Discount)) {
+                int rnd= getRandomNumber(1,99);
 
-                       //Toast.makeText(CustomerSignatureActivity.this, "Payment Done.!", Toast.LENGTH_SHORT).show();
+                String rcptNo=cid+ts+String.valueOf(rnd);
 
+                if(AllowRequest) {
 
-                       String toa=myDB.getcustomerOutstanding(custid);
+                    AllowRequest = false;
 
-                       //Toast.makeText(CustomerSignatureActivity.this, toa, Toast.LENGTH_SHORT).show();
+                    if (myDB.insertReceipt(custid, accno, billid, paidamount, paymode, cheqno, cheqdate, bankname, email, uid, signaturestring, rdate, "0.0", "0.0", Discount, "", "false", rcptNo)) {
+                        if (myDB.UpdateOutstanding(custid, paidamount, Discount)) {
 
-                       //findViewById(R.id.llconfirm).setEnabled(true);
+                            String toa = myDB.getcustomerOutstanding(custid);
 
-                       //Toast.makeText(CustomerSignatureActivity.this, "Enable", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(CustomerSignatureActivity.this, TransactionStatusActivity.class);
+                            i.putExtra("from", from);
+                            i.putExtra("Oa", toa);
+                            i.putExtra("title", areatitle);
+                            startActivity(i);
 
-                       Intent i = new Intent(CustomerSignatureActivity.this, TransactionStatusActivity.class);
-                       i.putExtra("from", from);
-                       i.putExtra("Oa", toa);
-                       i.putExtra("title",areatitle);
-                       startActivity(i);
+                            finish();
 
-                       finish();
+                        } else {
+                            //findViewById(R.id.llconfirm).setEnabled(true);
 
-                   }
-                   else
-                   {
-                       findViewById(R.id.llconfirm).setEnabled(true);
+                            enableView(findViewById(R.id.llconfirm));
 
-                       //Toast.makeText(CustomerSignatureActivity.this, "Enable", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(CustomerSignatureActivity.this, "Enable", Toast.LENGTH_SHORT).show();
 
-                       Toast.makeText(this, "Something Went Wrong.. Go BACK & Try again..", Toast.LENGTH_SHORT).show();
-                   }
-               }
+                            Toast.makeText(this, "Something Went Wrong.. Go BACK & Try again..", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        //findViewById(R.id.llconfirm).setEnabled(true);
 
-               else
-               {
-                   findViewById(R.id.llconfirm).setEnabled(true);
+                        enableView(findViewById(R.id.llconfirm));
 
-                   //Toast.makeText(CustomerSignatureActivity.this, "Enable", Toast.LENGTH_SHORT).show();
-
-                   Toast.makeText(this, "Something Went Wrong.. Go BACK & Try again..", Toast.LENGTH_SHORT).show();
-               }
+                        Toast.makeText(this, "Something Went Wrong.. Go BACK & Try again..", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
         }
@@ -842,34 +793,6 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
            // Toast.makeText(CustomerSignatureActivity.this, "EXCEPTION"+e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
-    
-    public void TestCall()
-    {
-        AllowRequest=false;
-
-        Toast.makeText(this, "Invoke.", Toast.LENGTH_SHORT).show();
-
-
-        final SpotsDialog spload;
-        spload = new SpotsDialog(CustomerSignatureActivity.this, R.style.Custom);
-        spload.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        spload.setCancelable(true);
-        spload.show();
-
-        spload.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-
-
-                Toast.makeText(CustomerSignatureActivity.this, "Cancelled Request", Toast.LENGTH_SHORT).show();
-
-                AllowRequest=true;
-
-                findViewById(R.id.llconfirm).setEnabled(true);
-            }
-        });
-    }
-
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -916,7 +839,9 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
                     Toast.makeText(CustomerSignatureActivity.this, latitude + "--" + longitude, Toast.LENGTH_SHORT).show();
 
-                    findViewById(R.id.llconfirm).setEnabled(false);
+                    //findViewById(R.id.llconfirm).setEnabled(false);
+
+                    disableView(findViewById(R.id.llconfirm));
 
                     if(AllowRequest) {
 
@@ -1098,5 +1023,23 @@ public class CustomerSignatureActivity extends AppCompatActivity implements View
 
         }
 
+    }
+
+    public void disableView(View v)
+    {
+        v.setClickable(false);
+        v.setEnabled(false);
+        v.setFocusable(false);
+    }
+
+    public void enableView(View v)
+    {
+        v.setClickable(true);
+        v.setEnabled(true);
+        v.setFocusable(true);
+    }
+
+    private int getRandomNumber(int min,int max) {
+        return (new Random()).nextInt((max - min) + 1) + min;
     }
 }

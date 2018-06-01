@@ -160,43 +160,6 @@ public class HomeFragment  extends Fragment {
                 }
             });
 
-      /*  tvtodaycol=(TextView)view.findViewById(R.id.textView20);
-        tvcurmonthbill=(TextView)view.findViewById(R.id.textView7);
-        tvlastmonthoa=(TextView)view.findViewById(R.id.textView9);
-        tvtotaloutstanding=(TextView)view.findViewById(R.id.textView11);
-
-        tvtodaycomplain=(TextView)view.findViewById(R.id.textView22);
-        tvcurmonthpend=(TextView)view.findViewById(R.id.textView15);
-        tvlastmonthpend=(TextView)view.findViewById(R.id.textView17);
-        tvtotalpendcomplain=(TextView)view.findViewById(R.id.textView19);*/
-
-        /*TextView tvtc=(TextView)view.findViewById(R.id.textView4);
-        tvtc.setText("TODAY'S\nCOLLECTION");
-
-        TextView tvcmb=(TextView)view.findViewById(R.id.textView7);
-        tvcmb.setText("CURRENT\nMONTH-BILL");
-
-        TextView tvlmos=(TextView)view.findViewById(R.id.textView9);
-        tvlmos.setText("LAST MONTH\nOUTSTANDING AMOUNT");
-
-        TextView tvto=(TextView)view.findViewById(R.id.textView11);
-        tvto.setText("TOTAL\nOUTSTANDING");
-
-
-        TextView tvtcmp=(TextView)view.findViewById(R.id.textView13);
-        tvtcmp.setText("TODAY'S\nCOMPLAIN");
-
-        TextView tvcmp=(TextView)view.findViewById(R.id.textView15);
-        tvcmp.setText("CURRENT MONTH\nPENDING COMPLAINS");
-
-        TextView tvlmp=(TextView)view.findViewById(R.id.textView17);
-        tvlmp.setText("LAST MONTH\nPENDING COMPLAINS");
-
-        TextView tvtp=(TextView)view.findViewById(R.id.textView19);
-        tvtp.setText("TOTAL PENDING\nCOMPLAINS");
-*/
-
-
         }
 
 
@@ -235,8 +198,6 @@ public class HomeFragment  extends Fragment {
 
         try{
 
-
-
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 
             // BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_16LE), 8);
@@ -258,18 +219,9 @@ public class HomeFragment  extends Fragment {
                 //is.close();
                 json = sb.toString();
 
-                // json= sb.toString().substring(0, sb.toString().length()-1);
                 try{
                     jobj = new JSONObject(json);
 
-                    // JSONArray jarrays=new JSONArray(json);
-
-                    // jobj=jarrays.getJSONObject(0);
-
-                    //  org.json.simple.parser.JSONParser jsonparse=new org.json.simple.parser.JSONParser();
-
-                    // jarr =(JSONArray)jsonparse.parse(json);
-                    // jobj = jarr.getJSONObject(0);
                 }catch (JSONException e){
                     Toast.makeText(getActivity(), "**"+e, Toast.LENGTH_SHORT).show();
                 }
@@ -292,10 +244,6 @@ public class HomeFragment  extends Fragment {
        // public DotProgressBar dtprogoress;
 
         SpotsDialog spload;
-
-
-
-
         JSONObject jsn1,jsn,jsnmain;
 
 

@@ -111,7 +111,7 @@ public class DashBoard extends AppCompatActivity
     private static final String PREF_NAME = "LoginPref";
 
     public static  TabLayout tabLayout;
-    public static   ViewPager viewPager;
+    public static   NonSwipeableViewPager viewPager;
     public static int int_items = 5;
 
     static Button notifCount;
@@ -157,7 +157,10 @@ public class DashBoard extends AppCompatActivity
         myDB = new DBHelper(this);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("All Entities");
+        toolbar.setTitle("");
+
+        ((TextView)findViewById(R.id.tvTitle)).setText("All Entities");
+
         sb.append("All Entities,");
         setSupportActionBar(toolbar);
 
@@ -174,10 +177,6 @@ public class DashBoard extends AppCompatActivity
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-       /* URL=siteurl+"/GetEntityByUser";
-        CallVolleys(URL);*/
-
-
         if(!pref.getString("RoleId","").toString().equals("2"))
         {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -191,8 +190,6 @@ public class DashBoard extends AppCompatActivity
 
         enamelist.clear();
         try {
-
-
 
             boolean isConnected = ConnectivityReceiver.isConnected();
             if(!isConnected)
@@ -297,7 +294,7 @@ public class DashBoard extends AppCompatActivity
                 Toast.makeText(DashBoard.this,"Something Went Wrong... Check Your Internet Connection...", Toast.LENGTH_LONG).show();
             }
 
-        toolbar.setOnClickListener(new View.OnClickListener() {
+        ((TextView)findViewById(R.id.tvTitle)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
 
@@ -388,7 +385,8 @@ public class DashBoard extends AppCompatActivity
 
                                     if (checked.valueAt(i) && lv.isItemChecked(position)) {
                                         if (da.getItem(position).equals("All Entities")) {
-                                            toolbar.setTitle(da.getItem(position));
+                                          //  toolbar.setTitle(da.getItem(position));
+                                            ((TextView)findViewById(R.id.tvTitle)).setText(da.getItem(position));
                                             sb.append("All Entities,");
                                             break;
                                         } else {
@@ -401,7 +399,8 @@ public class DashBoard extends AppCompatActivity
                                 }
 
                                 if (!sb.toString().equals("All Entities,") && sb.length() > 0) {
-                                    toolbar.setTitle(sb.toString());
+                                  //  toolbar.setTitle(sb.toString());
+                                    ((TextView)findViewById(R.id.tvTitle)).setText(sb.toString());
 
                                     //sb1=sb;
 
@@ -478,12 +477,6 @@ public class DashBoard extends AppCompatActivity
                         {
                             Toast.makeText(DashBoard.this, "Sorry.. You are Offline..!! ", Toast.LENGTH_LONG).show();
                         }
-
-
-                           /* else
-                            {
-                                Snackbar.make(v,"Please Select Atleast one Entity...",Snackbar.LENGTH_LONG).show();
-                            }*/
                     }
                 });
                 builderDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -497,101 +490,6 @@ public class DashBoard extends AppCompatActivity
                 alert.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
                 alert.show();
 
-               /* final ArrayList<String> pos = new ArrayList<String>();
-
-
-                final String[] dialoglist = Entitylist.toArray(new String[Entitylist.size()]);
-
-                final AlertDialog.Builder builderDialog = new AlertDialog.Builder(DashBoard.this);
-
-                int count = dialoglist.length;
-                final boolean[] ischecked = new boolean[count];
-
-                builderDialog.setMultiChoiceItems(dialoglist, ischecked, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-
-                        final ListView lv = ((AlertDialog)dialog).getListView();
-
-                        if (isChecked) {
-                            if (Entitylist.get(which).equals("All Entities")) {
-                                for (int i = 1; i < lv.getCount(); i++) {
-                                    ((CheckedTextView) lv.getChildAt(i)).setChecked(true);
-                                }
-                            }
-                            else
-                            {
-                                ((CheckedTextView) lv.getChildAt(0)).setChecked(false);
-                                ((CheckedTextView) lv.getChildAt(which)).setChecked(true);
-                            }
-
-
-                            pos.add(Entitylist.get(which));
-
-
-                            //temp=temp+Entitylist.get(which);
-                        } else {
-                            if (Entitylist.get(which).equals("All Entities")) {
-                                for (int i = 0; i < lv.getCount(); i++) {
-                                    ((CheckedTextView) lv.getChildAt(i)).setChecked(false);
-                                }
-                            }
-
-                            else
-                            {
-                                ((CheckedTextView) lv.getChildAt(which)).setChecked(false);
-                                lv.clearChoices();
-                            }
-                        }
-
-
-                    }
-                });
-
-                builderDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        ListView list = ((AlertDialog)dialog).getListView();
-
-                            StringBuilder sb = new StringBuilder();
-                            for (int i = 0; i < list.getCount(); i++) {
-                                boolean checked = list.isItemChecked(i);
-                                // get checked list value
-                                if (checked) {
-                                    if (sb.length() > 0)
-                                        sb.append(",");
-                                    sb.append(list.getItemAtPosition(i));
-
-                            }
-                        }
-
-                        String result=sb.toString();
-                        toolbar.setTitle(result);
-                       /* for (int i = 0; i < pos.size(); i++) {
-                            temp = temp + " " + pos.get(i);
-
-                        }
-                        toolbar.setTitle(temp);
-                      //  pos.clear();
-                        temp = "";
-
-
-                    }
-                });
-
-                builderDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-
-                    }
-                });
-
-                final AlertDialog alert=builderDialog.create();
-                             alert.show();*/
             }
         });
 
@@ -631,7 +529,7 @@ public class DashBoard extends AppCompatActivity
         String s1=pref.getString("SiteURL","").toString();
         String s2=pref.getString("Contracotrid","").toString();
         String s3=pref.getString("LoginStatus","").toString();
-        String s4=pref.getString("Name","").toString();
+        String s4=pref.getString("LoginName","").toString();
 
         txtname.setText(s4);
 
@@ -835,13 +733,13 @@ public class DashBoard extends AppCompatActivity
         Comcount=comcount;
         CustComCount=custcomcount;
 
-        createCartBadge(Rcount);
-        createCartBadge_alert(Acount);
+        //createCartBadge(Rcount);
+       // createCartBadge_alert(Acount);
         //createCartBadge_complaint(Ccount);
 
-        createCartBadge_customer_comment_count(CustComCount);
+       // createCartBadge_customer_comment_count(CustComCount);
 
-        createCartBadge_complaint_comment(Comcount);
+      //  createCartBadge_complaint_comment(Comcount);
 
     }
 
@@ -880,7 +778,7 @@ public class DashBoard extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_reminders) {
+      /*  if (id == R.id.action_reminders) {
 
             if(Rcount==0) {
             }
@@ -909,7 +807,14 @@ public class DashBoard extends AppCompatActivity
         else if(id== R.id.action_comment)
         {
 
-            viewPager.setCurrentItem(3);
+            if(CustComCount==0) {
+            }
+            else {
+
+                Intent i = new Intent(getApplicationContext(), CustomerCommentList.class);
+                startActivity(i);
+            }
+
             return true;
 
         }
@@ -924,7 +829,7 @@ public class DashBoard extends AppCompatActivity
 
             return true;
         }
-
+*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -938,11 +843,11 @@ public class DashBoard extends AppCompatActivity
     public boolean onPrepareOptionsMenu(Menu paramMenu) {
 
         mToolbarMenu = paramMenu;
-        createCartBadge(Rcount);
-        createCartBadge_alert(Acount);
+      //  createCartBadge(Rcount);
+       // createCartBadge_alert(Acount);
         //createCartBadge_complaint(Ccount);
 
-        createCartBadge_customer_comment_count(CustComCount);
+       // createCartBadge_customer_comment_count(CustComCount);
 
         return super.onPrepareOptionsMenu(paramMenu);
 
@@ -956,7 +861,7 @@ public class DashBoard extends AppCompatActivity
     }*/
 
 
-    private void createCartBadge(int paramInt) {
+  /*  private void createCartBadge(int paramInt) {
         if (Build.VERSION.SDK_INT <= 15) {
             return;
         }
@@ -1007,7 +912,7 @@ public class DashBoard extends AppCompatActivity
         rotate.setDuration(5000);
         rotate.setInterpolator(new LinearInterpolator());
     }
-
+*/
     /*public void createCartBadge_complaint(int paramInt) {
         if (Build.VERSION.SDK_INT <= 15) {
             return;
@@ -1032,6 +937,7 @@ public class DashBoard extends AppCompatActivity
     }*/
 
 
+/*
     public void createCartBadge_customer_comment_count(int paramInt) {
         if (Build.VERSION.SDK_INT <= 15) {
             return;
@@ -1054,6 +960,7 @@ public class DashBoard extends AppCompatActivity
         localLayerDrawable.setDrawableByLayerId(R.id.ic_badgess, badgeDrawable);
         cartItem.setIcon(localLayerDrawable);
     }
+*/
 
 
     public void  createCartBadge_complaint_comment(int paramInt) {
@@ -1149,14 +1056,6 @@ public class DashBoard extends AppCompatActivity
                     dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
                     dialog.show();
 
-
-               /* SharedPreferences pref=getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor =pref.edit();
-                editor.clear().apply();
-
-                Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(i);*/
-
                 }
 
                 else
@@ -1197,15 +1096,6 @@ public class DashBoard extends AppCompatActivity
                     MDDialog dialog=adb.create();
                     dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
                     dialog.show();
-
-
-
-               /* SharedPreferences pref=getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor =pref.edit();
-                editor.clear().apply();
-
-                Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(i);*/
 
                 }
                 else {
@@ -1273,14 +1163,6 @@ public class DashBoard extends AppCompatActivity
                 try{
                     jobj = new JSONObject(json);
 
-                    // JSONArray jarrays=new JSONArray(json);
-
-                    // jobj=jarrays.getJSONObject(0);
-
-                    //  org.json.simple.parser.JSONParser jsonparse=new org.json.simple.parser.JSONParser();
-
-                    // jarr =(JSONArray)jsonparse.parse(json);
-                    // jobj = jarr.getJSONObject(0);
                 }catch (JSONException e){
                     Toast.makeText(DashBoard.this, "**"+e, Toast.LENGTH_SHORT).show();
                 }
@@ -1319,25 +1201,6 @@ public class DashBoard extends AppCompatActivity
 
                 do {
 
-                        /*PK_RECEIPT_ID + " INTEGER AUTO INCREMENT PRIMARY KEY," +
-                                FK_CUSTOMER_ID + " TEXT REFERENCES " + CUSTOMERTABLE + "," +
-                                FK_ACCOUNTNO + " TEXT " + "," +
-                                FK_BILL_ID + " TEXT " + "," +
-                                PAID_AMOUNT + " TEXT " + "," +
-                                PAYMENT_MODE + " TEXT " + "," +
-                                CHQNUMBER + " TEXT " + "," +
-                                CHQDATE + " TEXT " + "," +
-                                CHQBANKNAME + " TEXT " + "," +
-                                R_EMAIL + " TEXT " + "," +
-                                CREATEDBY + " TEXT " + "," +
-                                SIGNATURE + " TEXT " + "," +
-                                RECEIPTDATE + " TEXT " + "," +
-                                LONGITUDE + " TEXT " + "," +
-                                LATITUDE + " TEXT " + "," +
-                                DISCOUNT + " TEXT " + "," +
-                                IS_PRINT + " TEXT " + "," +
-                                IS_SYNC + " TEXT " +**/
-
                     String rid=c.getString(c.getColumnIndex(DBHelper.PK_RECEIPT_ID));
                     String acno=c.getString(c.getColumnIndex(DBHelper.FK_ACCOUNTNO));
                     String bid=c.getString(c.getColumnIndex(DBHelper.FK_BILL_ID));
@@ -1353,6 +1216,7 @@ public class DashBoard extends AppCompatActivity
                     String discount=c.getString(c.getColumnIndex(DBHelper.DISCOUNT));
                     String paidamount=c.getString(c.getColumnIndex(DBHelper.PAID_AMOUNT));
                     String paymentmode=c.getString(c.getColumnIndex(DBHelper.PAYMENT_MODE));
+                    String recptNo=c.getString(c.getColumnIndex(DBHelper.RECEIPT_NO));
 
 
                     HashMap<String, String> map = new HashMap<>();
@@ -1373,8 +1237,11 @@ public class DashBoard extends AppCompatActivity
                     map.put("latitude",lati);
                     map.put("discount",discount);
                     map.put("isprint", "");
+                    map.put("recptNo", recptNo);
 
-                    URL = siteurl + "/withdiscount";
+                    //URL = siteurl + "/withdiscount";
+
+                    URL=siteurl+"/withdiscountAndReceiptNo";
 
                     CallVolley(URL, map, rid);
 
@@ -1654,7 +1521,7 @@ public class DashBoard extends AppCompatActivity
              */
             View x = inflater.inflate(R.layout.tablayout, null);
             tabLayout = (TabLayout) x.findViewById(R.id.tabs);
-            viewPager = (ViewPager) x.findViewById(R.id.viewpager);
+            viewPager = (NonSwipeableViewPager) x.findViewById(R.id.viewpager);
 
 
             /**
@@ -1668,12 +1535,7 @@ public class DashBoard extends AppCompatActivity
                 viewPager.setCurrentItem(1);
             }
 
-
-            /**
-             * Now , this is a workaround ,
-             * The setupWithViewPager dose't works without the runnable .
-             * Maybe a Support Library Bug .
-             */
+            viewPager.setPagingEnabled(false);
 
             tabLayout.post(new Runnable() {
                 @Override
@@ -1685,28 +1547,9 @@ public class DashBoard extends AppCompatActivity
                     tabLayout.getTabAt(3).setIcon(ICONS[3]);
                     tabLayout.getTabAt(4).setIcon(ICONS[4]);
 
-                  /*  for(int i=0;i<tabLayout.getTabCount();i++)
-                    {
-                       tabLayout.getTabAt(i).getIcon().setAlpha(200);
-                    }*/
-
-                   // createCartBadge_complaint_comment(Comcount);
-
                     tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                         @Override
                         public void onTabSelected(TabLayout.Tab tab) {
-
-
-                          /*  ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
-                            // int delay = (i * 150) + 750; //this is starting delay
-                            ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                            vgTab.animate()
-                                    .scaleX(1.4f)
-                                    .scaleY(1.4f)
-                                    .setStartDelay(0)
-                                    .setInterpolator(new FastOutSlowInInterpolator())
-                                    .setDuration(450)
-                                    .start();*/
 
                             if(tab.getPosition()==0)
                             {
@@ -1715,273 +1558,30 @@ public class DashBoard extends AppCompatActivity
 
 
                            else if (tab.getPosition() == 1) {
-                                // tab.getIcon().setTint(Color.parseColor("#aa0000"));
-
-                                //tab.getIcon().setColorFilter(Color.rgb(170, 0, 0), android.graphics.PorterDuff.Mode.MULTIPLY);
-                                /*viewPager.setCurrentItem(tab.getPosition());
-
-
-                               Bundle bundle1=new Bundle();
-                                SharedPreferences  pref=getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                                 URL=siteurl+"/GetAreaByUserForCollectionApp?contractorId="+cid+"&userId="+uid+"&entityId="+pref.getString("Entityids","").toString();
-                                bundle1.putString("url", URL);
-
-                                PaymentFragment pf=new PaymentFragment();
-                                pf.setArguments(bundle1);
-
-
-                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                                //ft.detach(pf);
-                              //  ft.attach(pf);
-                                ft.add(viewPager.getId(),pf);
-                              //  ft.replace(R.id.containerView, new TabFragment());
-                               ft.commit();*/
 
                                 viewPager.setCurrentItem(tab.getPosition());
 
-                               // TextView text = (TextView) tab.getCustomView();
-
-                               // text.setTypeface(null, Typeface.BOLD);
-                            }
+                             }
                            else if (tab.getPosition() == 2) {
 
-
-
-                                /*Bundle bundle1=new Bundle();
-                                SharedPreferences  pref=getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                                URL=siteurl+"/GetUserlistforcollectionApp?contractorId="+cid+"&loginuserId="+uid+"&entityId="+pref.getString("Entityids","").toString();
-                                bundle1.putString("url", URL);
-
-                                CollectionFragment pf=new CollectionFragment();
-                                pf.setArguments(bundle1);
-
-
-                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                                //ft.detach(pf);
-                                //  ft.attach(pf);
-                                ft.add(viewPager.getId(),pf);
-                                //  ft.replace(R.id.containerView, new TabFragment());
-                                ft.commit();*/
-
                                 viewPager.setCurrentItem(tab.getPosition());
-                                // tab.getIcon().setTint(Color.parseColor("#00aa00"));
-                               // tab.getIcon().setColorFilter(Color.rgb(0, 170, 0), android.graphics.PorterDuff.Mode.MULTIPLY);
+
                             }
                            else if (tab.getPosition() == 3) {
 
-
-                               /*Bundle bundle1=new Bundle();
-                                SharedPreferences  pref=getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                                URL=siteurl+"/GetComplainListByAreaForCollectionApp?contractorId="+cid+"&loginuserId="+uid+"&entityIds="+pref.getString("Entityids","").toString();
-                                bundle1.putString("url", URL);
-
-                                ComplainFragment pf=new ComplainFragment();
-                                pf.setArguments(bundle1);
-
-
-                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                                //ft.detach(pf);
-                                //  ft.attach(pf);
-                                ft.add(viewPager.getId(),pf);
-                                //  ft.replace(R.id.containerView, new TabFragment());
-                                ft.commit();*/
-
                                 viewPager.setCurrentItem(tab.getPosition());
-                                // tab.getIcon().setTint(Color.parseColor("#e59400"));
-                              //  tab.getIcon().setColorFilter(Color.rgb(229, 148, 0), android.graphics.PorterDuff.Mode.MULTIPLY);
+
                             }
                            else if (tab.getPosition() == 4) {
 
-                               /* Bundle bundle1=new Bundle();
-                                SharedPreferences  pref=getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                                URL=siteurl+"/GetCustomerDashbordHomeForNewCollectionApp?contractorId="+cid+"&loginuserId="+uid+"&entityIds="+pref.getString("Entityids","").toString();
-                                bundle1.putString("url", URL);
-
-                                CustomerFragment pf=new CustomerFragment();
-                                pf.setArguments(bundle1);
-
-
-                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                              //  ft.detach(pf);
-                               // ft.attach(pf);
-                                ft.remove(pf);
-                                ft.add(viewPager.getId(),pf);
-                               // ft.replace(R.id.containerView, new TabFragment());
-                                ft.commit();*/
-
-                                //tabLayout.getTabAt(4).select();
-
                                 viewPager.setCurrentItem(tab.getPosition());
-                               // tab.getIcon().setTint(Color.parseColor("#0080ff"));
-                               // tab.getIcon().setColorFilter(Color.rgb(0, 0, 127), android.graphics.PorterDuff.Mode.MULTIPLY);
-                            }
-
-
-
-
-
-                       /*     if(tab.getPosition()==0)
-                            {
-
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(0);
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
 
                             }
-                            else if(tab.getPosition()==1)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-                            }
-                            else if(tab.getPosition()==2)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-                            }
-                            else if(tab.getPosition()==3)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-                            }
-                            else if(tab.getPosition()==4)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-
-                            }*/
-
 
                         }
 
                         @Override
                         public void onTabUnselected(TabLayout.Tab tab) {
-
-
-                           /* ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
-
-                            ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                            vgTab.animate()
-                                    .scaleX(1f)
-                                    .scaleY(1f)
-                                    .setStartDelay(0)
-                                    .setInterpolator(new FastOutSlowInInterpolator())
-                                    .setDuration(450)
-                                    .start();*/
-
-                            //  tab.getIcon().setTint(Color.parseColor("#ffffff"));
-                           // tab.getIcon().setColorFilter(Color.argb(255, 255, 255, 255), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-
-
-
-                               /* if(tab.getPosition()==0)
-                                {
-
-                                    ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
-
-                                    ViewGroup vgTab = (ViewGroup) vg.getChildAt(0);
-                                    vgTab.animate()
-                                            .scaleX(1f)
-                                            .scaleY(1f)
-                                            .setStartDelay(0)
-                                            .setInterpolator(new FastOutSlowInInterpolator())
-                                            .setDuration(450)
-                                            .start();
-
-                                }
-
-                            else if(tab.getPosition()==1)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-                            }
-                            else if(tab.getPosition()==2)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-                            }
-                            else if(tab.getPosition()==3)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-                            }
-                            else if(tab.getPosition()==4)
-                            {
-                                ViewGroup vg = (ViewGroup) tabLayout.getChildAt(tab.getPosition());
-
-                                ViewGroup vgTab = (ViewGroup) vg.getChildAt(tab.getPosition());
-                                vgTab.animate()
-                                        .scaleX(1.5f)
-                                        .scaleY(1.5f)
-                                        .setStartDelay(0)
-                                        .setInterpolator(new FastOutSlowInInterpolator())
-                                        .setDuration(450)
-                                        .start();
-
-                            }*/
 
                         }
 
@@ -2064,15 +1664,6 @@ public class DashBoard extends AppCompatActivity
                         }
 
                     case 1:
-
-                       /* HomeFragment hf=new HomeFragment();
-                        hf.setArguments(bundle);
-
-                        FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                        ft.detach(hf);
-                        ft.attach(hf);
-                        ft.replace(R.id.containerView, new TabFragment());
-                        ft.commit();*/
 
                         PaymentFragment pf = new PaymentFragment();
 

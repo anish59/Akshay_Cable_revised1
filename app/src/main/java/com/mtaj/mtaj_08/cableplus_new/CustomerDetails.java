@@ -115,7 +115,7 @@ public class CustomerDetails extends AppCompatActivity {
 
     private static final String PREF_NAME = "LoginPref";
 
-    String siteurl,cid,uid,acno,title,URL,URL1,custid,from,receiptDate="-";
+    String siteurl,cid,uid,acno,title,URL,URL1,custid,from,receiptDate="-",isOsEditable;
 
     static InputStream is = null;
     static JSONObject jobj = null;
@@ -168,7 +168,7 @@ public class CustomerDetails extends AppCompatActivity {
         pref=getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         requestQueue = Volley.newRequestQueue(CustomerDetails.this);
 
-
+        isOsEditable=pref.getString("isOutstandingEditable","");
         siteurl=pref.getString("SiteURL", "").toString();
         uid=pref.getString("Userid", "").toString();
         cid=pref.getString("Contracotrid", "").toString();
@@ -198,6 +198,11 @@ public class CustomerDetails extends AppCompatActivity {
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
         receiptDate=(cmonth + 1) + "/" + day + "/" + year;
+
+        //SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        //receiptDate = sdf.format(calendar.getTime());
+
+       // Log.e("RECIEPTDATE",receiptDate);
 
 
         URL=siteurl+"/GetCustomerPaymentDetailsNet9ForCollectionApp?customerId="+custid;
@@ -249,6 +254,41 @@ public class CustomerDetails extends AppCompatActivity {
         registerForContextMenu(lstcomment);
 
         setListViewHeightBasedOnChildren(lvosdetails);
+
+        if(isOsEditable.equals("true"))
+        {
+            imadressedit.setVisibility(View.VISIBLE);
+            imphoneedit.setVisibility(View.VISIBLE);
+            imemailedit.setVisibility(View.VISIBLE);
+
+            final Drawable drawable1 = edphone.getBackground(); // get current EditText drawable
+            drawable1.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+
+            final Drawable drawable11 = edemail.getBackground(); // get current EditText drawable
+            drawable11.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+
+            final Drawable drawable12 = edaddress.getBackground(); // get current EditText drawable
+            drawable12.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+        }
+        else {
+
+            imadressedit.setVisibility(View.GONE);
+            imphoneedit.setVisibility(View.GONE);
+            imemailedit.setVisibility(View.GONE);
+
+            final Drawable drawable1 = edphone.getBackground(); // get current EditText drawable
+            drawable1.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
+            final Drawable drawable11 = edemail.getBackground(); // get current EditText drawable
+            drawable11.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
+            final Drawable drawable12 = edaddress.getBackground(); // get current EditText drawable
+            drawable12.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
+        }
+
+
+
 
         imadressedit.setOnClickListener(new View.OnClickListener() {
             @Override

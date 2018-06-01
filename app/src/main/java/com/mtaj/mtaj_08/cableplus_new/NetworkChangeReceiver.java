@@ -85,6 +85,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
                             String discount = c.getString(c.getColumnIndex(DBHelper.DISCOUNT));
                             String paidamount = c.getString(c.getColumnIndex(DBHelper.PAID_AMOUNT));
                             String paymentmode = c.getString(c.getColumnIndex(DBHelper.PAYMENT_MODE));
+                            String recptNo=c.getString(c.getColumnIndex(DBHelper.RECEIPT_NO));
 
 
                             HashMap<String, String> map = new HashMap<>();
@@ -105,8 +106,11 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
                             map.put("latitude", lati);
                             map.put("discount", discount);
                             map.put("isprint", "");
+                            map.put("recptNo", recptNo);
 
-                            URL = siteurl + "/withdiscount";
+                            //URL = siteurl + "/withdiscount";
+
+                            URL=siteurl+"/withdiscountAndReceiptNo";
 
                             CallVolley(URL, map, rid);
 
@@ -126,17 +130,8 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
 
     public void CallVolley(String a,HashMap<String,String> map1,final String rid) {
-       /* final SpotsDialog spload;
-        spload = new SpotsDialog(CustomerSignatureActivity.this, R.style.Custom);
-        spload.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        spload.setCancelable(true);
-        spload.show();*/
 
         try {
-            //jsonobj=makeHttpRequest(params[0]);
-
-
-
             JsonObjectRequest obreq;
             obreq = new JsonObjectRequest(Request.Method.POST, a, new JSONObject(map1),
                     new Response.Listener<JSONObject>() {
@@ -148,20 +143,9 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
                                 try {
 
-
-                                    //findViewById(R.id.llconfirm).setEnabled(true);
-                                    //  Toast.makeText(CustomerSignatureActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                                      //Toast.makeText(con, response.toString(), Toast.LENGTH_SHORT).show();
 
                                     if (response.getString("status").toString().equals("True")) {
-                                        /*String toa = response.getString("TotalOutStandingAmount");
-
-                                        Intent i = new Intent(CustomerSignatureActivity.this, TransactionStatusActivity.class);
-                                        i.putExtra("from", from);
-                                        i.putExtra("Oa", toa);
-                                        i.putExtra("title",areatitle);
-                                        startActivity(i);
-
-                                        finish();*/
 
                                         Toast.makeText(con, "Receipt Done.!!", Toast.LENGTH_SHORT).show();
                                         Toast.makeText(con, "---", Toast.LENGTH_SHORT).show();

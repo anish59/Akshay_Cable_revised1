@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ import android.widget.Toast;
 public class DBHelper extends SQLiteOpenHelper {
 
     //Database name
-    public static final String DATABASE_NAME = "test40";
+    public static final String DATABASE_NAME = "test44";
 
     //Entity Table
     public static final String ENTITYTABLE = "EntityTable";
@@ -57,6 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String RECEIPTTABLE = "ReceiptTable";
 
+    public static final String RECEIPT_NO = "RECEIPT_NO";
     public static final String PK_RECEIPT_ID = "PK_RECEIPT_ID";
     public static final String FK_CUSTOMER_ID = "FK_CUSTOMER_ID";
     public static final String FK_ACCOUNTNO= "FK_ACCOUNTNO";
@@ -146,7 +148,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     LATITUDE + " TEXT " + "," +
                     DISCOUNT + " TEXT " + "," +
                     IS_PRINT + " TEXT " + "," +
-                    IS_SYNC + " TEXT " +
+                    IS_SYNC + " TEXT " +","+
+                    RECEIPT_NO + " TEXT" +
                     ")";
 
             db.execSQL(CREATE_ENTITY_TABLE);
@@ -365,11 +368,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return  c;
     }
 
-    public boolean insertReceipt(String Cid,String acno,String billid,String paidamount,String paymode,String chqnumber,String chqdate,String chqbankname,String remail,String createdby,String sign,String rdate,String longi,String lati,String dis,String is_print,String is_sync)
+    public boolean insertReceipt(String Cid,String acno,String billid,String paidamount,String paymode,String chqnumber,String chqdate,String chqbankname,String remail,String createdby,String sign,String rdate,String longi,String lati,String dis,String is_print,String is_sync,String recptNo)
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        try {
 
-        //db=getWritableDatabase();
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            //db=getWritableDatabase();
 
         /*PK_RECEIPT_ID + " INTEGER AUTO INCREMENT PRIMARY KEY," +
                 FK_CUSTOMER_ID + " TEXT REFERENCES " + CUSTOMERTABLE + "," +
@@ -391,36 +396,42 @@ public class DBHelper extends SQLiteOpenHelper {
                 IS_SYNC + " TEXT " +*/
 
 
-        ContentValues contentValues=new ContentValues();
+            ContentValues contentValues = new ContentValues();
 
-        contentValues.put(FK_CUSTOMER_ID,Cid);
-        contentValues.put(FK_ACCOUNTNO,acno);
-        contentValues.put(FK_BILL_ID,billid);
-        contentValues.put(PAID_AMOUNT,paidamount);
-        contentValues.put(PAYMENT_MODE,paymode);
-        contentValues.put(CHQNUMBER,chqnumber);
-        contentValues.put(CHQDATE,chqdate);
-        contentValues.put(CHQBANKNAME,chqbankname);
-        contentValues.put(R_EMAIL,remail);
-        contentValues.put(CREATEDBY,createdby);
-        contentValues.put(SIGNATURE,sign);
-        contentValues.put(RECEIPTDATE, rdate);
-        contentValues.put(LONGITUDE,longi);
-        contentValues.put(LATITUDE, lati);
-        contentValues.put(DISCOUNT, dis);
-        contentValues.put(IS_PRINT, is_print);
-        contentValues.put(IS_SYNC, is_sync);
+            contentValues.put(FK_CUSTOMER_ID, Cid);
+            contentValues.put(FK_ACCOUNTNO, acno);
+            contentValues.put(FK_BILL_ID, billid);
+            contentValues.put(PAID_AMOUNT, paidamount);
+            contentValues.put(PAYMENT_MODE, paymode);
+            contentValues.put(CHQNUMBER, chqnumber);
+            contentValues.put(CHQDATE, chqdate);
+            contentValues.put(CHQBANKNAME, chqbankname);
+            contentValues.put(R_EMAIL, remail);
+            contentValues.put(CREATEDBY, createdby);
+            contentValues.put(SIGNATURE, sign);
+            contentValues.put(RECEIPTDATE, rdate);
+            contentValues.put(LONGITUDE, longi);
+            contentValues.put(LATITUDE, lati);
+            contentValues.put(DISCOUNT, dis);
+            contentValues.put(IS_PRINT, is_print);
+            contentValues.put(IS_SYNC, is_sync);
+            contentValues.put(RECEIPT_NO, recptNo);
 
-        if(db.insert(RECEIPTTABLE,null,contentValues)>0)
-        {
-           // db.close();
+            long count = db.insert(RECEIPTTABLE, null, contentValues);
 
-            return true;
+            if (count > 0) {
+                // db.close();
+
+                return true;
+            } else {
+                //db.close();
+
+                return false;
+            }
         }
-        else
+        catch (SQLiteException e)
         {
-            //db.close();
-
+            e.printStackTrace();
             return false;
         }
     }
