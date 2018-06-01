@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="30dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingTop="30dp">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/orange_cableplus"
         android:layout_gravity="center_horizontal"
-        android:scaleType="fitXY"
         android:paddingTop="20dp"
-       />
+        android:scaleType="fitXY"
+        android:src="@drawable/orange_cableplus" />
 
 
     <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:padding="13dp"
+        android:layout_marginBottom="25dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
-        android:layout_marginBottom="25dp"
         android:layout_marginTop="50dp"
+        android:background="@drawable/border"
         android:drawableLeft="@drawable/user"
-        android:hint="@string/hintusername"
-        android:textColorHint="@android:color/darker_gray"
         android:drawablePadding="10dp"
+        android:hint="@string/hintusername"
         android:imeOptions="actionNext"
         android:inputType="text"
+        android:padding="13dp"
         android:singleLine="true"
-        android:background="@drawable/border"
-        />
+        android:text="hjbrc"
+        android:textColorHint="@android:color/darker_gray" />
 
     <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
         android:id="@+id/passwordInTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hintpassword"
-        android:textColorHint="@android:color/darker_gray"
-        app:drawable_hide="@drawable/hidepass"
-        app:drawable_show="@drawable/showpass"
-        android:padding="13dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
+        android:background="@drawable/border"
         android:drawableLeft="@drawable/password"
-        android:drawableRight="@drawable/showpass"
         android:drawablePadding="10dp"
+        android:drawableRight="@drawable/showpass"
+        android:hint="@string/hintpassword"
         android:inputType="textPassword"
+        android:padding="13dp"
         android:singleLine="true"
-        android:background="@drawable/border"/>
+        android:text="hjbrc@123"
+        android:textColorHint="@android:color/darker_gray"
+        app:drawable_hide="@drawable/hidepass"
+        app:drawable_show="@drawable/showpass" />
 
 
     <EditText
+        android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:padding="13dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
         android:layout_marginTop="25dp"
-        android:drawableLeft="@drawable/op_code"
-        android:hint="@string/hintopcode"
-        android:textColorHint="@android:color/darker_gray"
-        android:drawablePadding="10dp"
-        android:imeOptions="actionGo"
-        android:singleLine="true"
         android:background="@drawable/border"
-        />
+        android:drawableLeft="@drawable/op_code"
+        android:drawablePadding="10dp"
+        android:hint="@string/hintopcode"
+        android:imeOptions="actionGo"
+        android:padding="13dp"
+        android:singleLine="true"
+        android:text="hjbrc"
+        android:textColorHint="@android:color/darker_gray" />
 
     <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/button"
-        android:padding="13dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
-        android:textSize="@dimen/textsize_20"
-        android:background="@color/ToolbarColor"
-        android:textColor="@android:color/white"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal" />
+        android:background="@color/ToolbarColor"
+        android:padding="13dp"
+        android:text="Login"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textsize_20" />
 </LinearLayout>

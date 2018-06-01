@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
         android:id="@+id/ic_complaint"
-        android:drawable="@drawable/complain"
+        android:drawable="@drawable/complain_call"
         android:gravity="center"/>
    <item
         android:id="@+id/ic_badgess"

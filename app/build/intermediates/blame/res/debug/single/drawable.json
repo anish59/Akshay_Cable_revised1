@@ -8,6 +8,10 @@
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_btn_colored_material.xml"
     },
     {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\sync_icon.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\sync_icon.png"
+    },
+    {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_newcomplain.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\shape_newcomplain.xml"
     },
@@ -92,12 +96,12 @@
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\ic_photo_library_black_24dp.png"
     },
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_add_a_photo_black_24dp.png",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\ic_add_a_photo_black_24dp.png"
-    },
-    {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_add_a_photo_black_24dp.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\ic_add_a_photo_black_24dp.png"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_arrow_back_white_24dp.png",
@@ -106,6 +110,10 @@
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\password.png",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\password.png"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\rupee.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\rupee.png"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_perm_identity_white_24dp.png",
@@ -176,16 +184,16 @@
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_item_background_holo_dark.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\complain.png",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\complain.png"
-    },
-    {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\fail.png",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\fail.png"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_activecomplain.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\shape_activecomplain.xml"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\money_bag.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\money_bag.png"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
@@ -220,8 +228,16 @@
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\drawable\\design_snackbar_background.xml"
     },
     {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\complain_call.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\complain_call.png"
+    },
+    {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cableplus_128.png",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\cableplus_128.png"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\pro_pic.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\pro_pic.png"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\logout.png",
@@ -376,6 +392,10 @@
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\layer_customizer.xml"
     },
     {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\gradient_profile_bg.xml",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\gradient_profile_bg.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\badge_icon_complain_count.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\badge_icon_complain_count.xml"
     },
@@ -478,6 +498,10 @@
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\group.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\group.png"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_clear_black_s24dp.png",
@@ -584,6 +608,10 @@
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\rupeeicon.png"
     },
     {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\profile_vector.xml",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\profile_vector.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\button_filled_green_clicked.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\ua.com.crosp.solutions.library\\presenter-layout\\0.1.1\\res\\drawable\\button_filled_green_clicked.xml"
     },
@@ -598,6 +626,10 @@
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\header1.png",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\header1.png"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\logout_icon.png",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\drawable\\logout_icon.png"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\reminder_1.png",

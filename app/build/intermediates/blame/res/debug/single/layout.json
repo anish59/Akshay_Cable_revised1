@@ -20,28 +20,28 @@
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header_dash_board.xml",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\layout\\nav_header_dash_board.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_no_connection.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\layout\\activity_no_connection.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header_dash_board.xml",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\layout\\nav_header_dash_board.xml"
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_popup_menu_header_item_layout.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\feed_update_count.xml",
-        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\layout\\feed_update_count.xml"
-    },
-    {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
         "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\feed_update_count.xml",
+        "source": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\src\\main\\res\\layout\\feed_update_count.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\OtherProjects\\Akshay_Cable\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout_complainbycustomer.xml",

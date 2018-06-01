@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#409cff</color>
+    <color name="colorAccent">#49CCED</color><!--Anish-->
+    <!--<color name="colorAccent">#409cff</color>-->
     <color name="login_bg">#174259</color>
     <color name="HomeCardviewcolor1">#aa0000</color>
     <color name="HomeCardviewcolor2">#e59400</color>
@@ -20,4 +21,9 @@
     <color name="grey_700">#616161</color>
     <color name="grey_800">#424242</color>
     <color name="grey_900">#212121</color>
+
+
+    <!--Anish-->
+    <color name="green">#51A351</color>
+
 </resources>
