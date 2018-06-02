@@ -51,7 +51,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -144,12 +147,15 @@ public class DashBoard extends AppCompatActivity
 
     private SQLiteDatabase database;
     public static boolean isOffline = false;
+    private FrameLayout containerView;
+    private RelativeLayout toolbarContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
-
+        containerView = (FrameLayout) findViewById(R.id.containerView);
+        toolbarContainer = (RelativeLayout) findViewById(R.id.toolbarContainer);
         /*StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitNetwork().build();
         StrictMode.setThreadPolicy(policy);*/
 
@@ -474,23 +480,47 @@ public class DashBoard extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                final float xOffset = drawerView.getWidth() * slideOffset;
+                containerView.setTranslationX(xOffset);
+                toolbarContainer.setTranslationX(xOffset);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
         Menu menu = navigationView.getMenu();
 
-        /*----Anish: for changin header item text color----*/
+      /*  *//*----Anish: for changin header item text color----*//*
         MenuItem tools = menu.findItem(R.id.navMenuMainItem);
         SpannableString s = new SpannableString(tools.getTitle());
         s.setSpan(new TextAppearanceSpan(this, R.style.navigationHeaderTextStyle), 0, s.length(), 0);
         tools.setTitle(s);
-        /*----***---*/
+        *//*----***---*/
 
         View h = navigationView.getHeaderView(0);
         TextView txtname = (TextView) h.findViewById(R.id.txtname);
-        CircleImageView cprofile = (CircleImageView) h.findViewById(R.id.profile_image);
-        cprofile.setBorderColor(Color.TRANSPARENT);
+        ImageView cprofile = (ImageView) h.findViewById(R.id.profile_image);
+//        cprofile.setBorderColor(Color.TRANSPARENT);
 
 
         mFragmentManager = getSupportFragmentManager();

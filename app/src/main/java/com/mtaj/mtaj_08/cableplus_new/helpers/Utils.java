@@ -54,6 +54,7 @@ public class Utils {
         GradientDrawable gradientDrawable = new GradientDrawable(orientation, new int[]{ContextCompat.getColor(context, color1), ContextCompat.getColor(context, color2), ContextCompat.getColor(context, color3)});
         gradientDrawable.setCornerRadius(0f);
         gradientDrawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+        gradientDrawable.setOrientation(orientation);
 
         return gradientDrawable;
     }

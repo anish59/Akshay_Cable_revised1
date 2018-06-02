@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlmain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
-    android:id="@+id/rlmain"
     android:visibility="gone">
     <!-- Header aligned to top -->
     <RelativeLayout
@@ -15,26 +15,27 @@
         android:layout_above="@id/footer">
 
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/refresh"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                android:orientation="vertical">
 
                 <ListView
+                    android:id="@+id/listView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/listView"
-                    android:dividerHeight="0dp"
-                    android:divider="@null"
                     android:clickable="false"
-                    android:listSelector="@android:color/transparent"/>
-                </LinearLayout>
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:listSelector="@android:color/transparent" />
+            </LinearLayout>
 
-            </android.support.v4.widget.SwipeRefreshLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </RelativeLayout>
 
@@ -56,64 +57,64 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="1"
-                android:background="#104E8B">
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
 
 
                 <TextView
+                    android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Today's Collection"
-                    android:id="@+id/textView27"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/textsize_14.0"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:text="Today's Collection"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/textsize_14.0" />
 
                 <TextView
+                    android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="0"
-                    android:id="@+id/textView28"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/textsize_20"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="1"
-                android:background="@color/ToolbarColor">
+                android:background="@color/ToolbarColor"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="This Month Collection"
-                    android:id="@+id/textView29"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/textsize_14.0"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:text="This Month Collection"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/textsize_14.0" />
 
                 <TextView
+                    android:id="@+id/textView30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="0"
-                    android:id="@+id/textView30"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/textsize_20"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 

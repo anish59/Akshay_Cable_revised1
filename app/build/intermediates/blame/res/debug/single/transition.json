@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/Users/atirek.pothiwala/Android/CableApp/app/build/intermediates/res/merged/debug/transition/explode.xml",
-        "source": "/Users/atirek.pothiwala/Android/CableApp/app/src/main/res/transition/explode.xml"
+        "merged": "D:\\AndroidProjects\\CurrentProjects\\ESmartComplain\\Akshay_Cable_revised1\\app\\build\\intermediates\\res\\merged\\debug\\transition\\slide_right.xml",
+        "source": "D:\\AndroidProjects\\CurrentProjects\\ESmartComplain\\Akshay_Cable_revised1\\app\\src\\main\\res\\transition\\slide_right.xml"
     },
     {
-        "merged": "/Users/atirek.pothiwala/Android/CableApp/app/build/intermediates/res/merged/debug/transition/slide_right.xml",
-        "source": "/Users/atirek.pothiwala/Android/CableApp/app/src/main/res/transition/slide_right.xml"
+        "merged": "D:\\AndroidProjects\\CurrentProjects\\ESmartComplain\\Akshay_Cable_revised1\\app\\build\\intermediates\\res\\merged\\debug\\transition\\explode.xml",
+        "source": "D:\\AndroidProjects\\CurrentProjects\\ESmartComplain\\Akshay_Cable_revised1\\app\\src\\main\\res\\transition\\explode.xml"
     }
 ]

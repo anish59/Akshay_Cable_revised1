@@ -11,7 +11,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -40,6 +39,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.mtaj.mtaj_08.cableplus_new.helpers.MovableFloatingActionButton;
 import com.mtaj.mtaj_08.cableplus_new.helpers.Utils;
 //import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
 
@@ -87,7 +87,7 @@ public class PaymentFragment extends Fragment {
 
     TextView tvtotalcol, tvtotaloa;
 
-    FloatingActionButton fabsearch;
+    MovableFloatingActionButton fabsearch;
 
     String siteurl, uid, cid, aid, eid, URL;
 
@@ -152,7 +152,7 @@ public class PaymentFragment extends Fragment {
         if (pref.getBoolean("IsBilling", true)) {
 
             lvarealist = (ListView) view.findViewById(R.id.listView);
-            fabsearch = (FloatingActionButton) view.findViewById(R.id.fab);
+            fabsearch = (MovableFloatingActionButton) view.findViewById(R.id.fab);
 
             tvtotalcol = (TextView) view.findViewById(R.id.textView28);
             tvtotaloa = (TextView) view.findViewById(R.id.textView30);
@@ -804,6 +804,7 @@ public class PaymentFragment extends Fragment {
         spload = new SpotsDialog(getActivity(), R.style.Custom);
         spload.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         spload.setCancelable(true);
+
         spload.show();
 
         //jsonobj=makeHttpRequest(params[0]);

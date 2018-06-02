@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 /**
  * Created by MTAJ-08 on 8/13/2016.
  */
@@ -13,7 +16,7 @@ public class MyApplication extends MultiDexApplication {
 
     private static MyApplication mInstance;
     private int lastInteraction;
-    private static  Boolean isScreenOff = false;
+    private static Boolean isScreenOff = false;
     private long lastInteractionTime;
 
     @Override
@@ -24,6 +27,11 @@ public class MyApplication extends MultiDexApplication {
         new ScreenReceiver();*/
 
         mInstance = this;
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("font/quicksend_regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
 
     }
 
@@ -37,7 +45,8 @@ public class MyApplication extends MultiDexApplication {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
+      super.attachBaseContext(base);
+
         MultiDex.install(this);
     }
 

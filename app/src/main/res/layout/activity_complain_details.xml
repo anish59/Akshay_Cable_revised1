@@ -515,7 +515,7 @@
                 android:layout_height="50dp"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                android:background="#104E8B"
+                android:background="@color/colorPrimaryDark"
                 android:id="@+id/llphoto">
 
                 <TextView
