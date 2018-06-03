@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey_300"
     android:focusable="true"
     android:focusableInTouchMode="true">
-    <requestFocus/>
+
+    <requestFocus />
     <!-- Header aligned to top -->
 
     <RelativeLayout
@@ -20,17 +21,15 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/ToolbarColor"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:collapseIcon="@drawable/ic_arrow_back_white_24dp" >
-        </android.support.v7.widget.Toolbar>
+            android:background="@color/colorPrimaryDark"
+            app:collapseIcon="@drawable/ic_arrow_back_white_24dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
     </RelativeLayout>
 
 
     <!-- Footer aligned to bottom -->
-
 
 
     <RelativeLayout
@@ -48,67 +47,67 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark">
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Total Collection"
                     android:id="@+id/textView27"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/textsize_14.0"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Total Collection"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="0"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/textsize_14.0" />
+
+                <TextView
                     android:id="@+id/textView28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/textsize_20"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_weight="1"
-                android:background="@color/ToolbarColor">
+                android:background="@color/ToolbarColor"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="4dp">
 
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Total Outstanding"
                     android:id="@+id/textView29"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/textsize_14.0"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:text="Total Outstanding"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="0"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/textsize_14.0" />
+
+                <TextView
                     android:id="@+id/textView30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/textsize_20"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -117,9 +116,7 @@
     </RelativeLayout>
 
 
-
     <!-- Content below header and above footer -->
-
 
 
     <RelativeLayout
@@ -130,16 +127,14 @@
         android:layout_below="@id/header"
         android:focusable="false"
         android:focusableInTouchMode="true"
-        android:visibility="gone"
-       >
+        android:visibility="gone">
 
         <ListView
+            android:id="@+id/listcustomerdetail"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/listcustomerdetail" />
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>

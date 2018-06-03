@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -17,24 +16,24 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             card_view:cardBackgroundColor="#ffffff"
-            card_view:contentPaddingBottom="10dp"
-            card_view:contentPaddingLeft="10dp"
-            card_view:contentPaddingRight="10dp"
-            card_view:contentPaddingTop="10dp">
+            card_view:contentPadding="@dimen/dimen_8_dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@drawable/border"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_8_dp">
 
                 <LinearLayout
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/textView2"
@@ -136,11 +135,18 @@
 
                 <ImageView
                     android:id="@+id/imageView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
-                    android:src="@drawable/map_icons" />
+                    android:src="@drawable/google_map_marker" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginStart="@dimen/dimen_8_dp"
+                    android:src="@drawable/ic_arrow_right_black_24dp" />
 
             </LinearLayout>
 

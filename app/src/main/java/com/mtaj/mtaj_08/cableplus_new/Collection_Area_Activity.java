@@ -63,14 +63,14 @@ public class Collection_Area_Activity extends AppCompatActivity {
 
     ListView lstcolarea;
 
-    ArrayList<HashMap<String,String>> areadetails=new ArrayList<>();
+    ArrayList<HashMap<String, String>> areadetails = new ArrayList<>();
 
     SimpleAdapter da;
 
     private Calendar calendar;
     private int year, cmonth, day;
 
-    EditText edtfrom,edtto;
+    EditText edtfrom, edtto;
 
     static InputStream is = null;
     static JSONObject jobj = null;
@@ -79,19 +79,19 @@ public class Collection_Area_Activity extends AppCompatActivity {
 
     JSONObject jsonobj;
 
-    TextView tvtotalcol,tvtotaloa;
+    TextView tvtotalcol, tvtotaloa;
 
-    String siteurl,uid,cid,aid,eid,URL,name;
+    String siteurl, uid, cid, aid, eid, URL, name;
 
-     Toolbar toolbar;
+    Toolbar toolbar;
 
-   String tempto="-",tempfrom="-";
+    String tempto = "-", tempfrom = "-";
 
     RelativeLayout rlmain;
 
-    String fromdate,todate;
+    String fromdate, todate;
 
-    int mPage=0;
+    int mPage = 0;
 
     String totalcollection;
 
@@ -100,37 +100,37 @@ public class Collection_Area_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection__area_);
 
-        Intent j=getIntent();
-        totalcollection=j.getExtras().getString("Userthismonthcollection");
+        Intent j = getIntent();
+        totalcollection = j.getExtras().getString("Userthismonthcollection");
 
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         cmonth = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
-       fromdate=(cmonth + 1) + "/" + "1" + "/" + year;
-        todate=(cmonth + 1) + "/" + day + "/" + year;
+        fromdate = (cmonth + 1) + "/" + "1" + "/" + year;
+        todate = (cmonth + 1) + "/" + day + "/" + year;
 
         final SharedPreferences pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        siteurl=pref.getString("SiteURL","").toString();
-        uid=pref.getString("selected_uid","").toString();
-        cid=pref.getString("Contracotrid","").toString();
-        aid=pref.getString("AreaId","").toString();
-        eid=pref.getString("Entityids","").toString();
+        siteurl = pref.getString("SiteURL", "").toString();
+        uid = pref.getString("selected_uid", "").toString();
+        cid = pref.getString("Contracotrid", "").toString();
+        aid = pref.getString("AreaId", "").toString();
+        eid = pref.getString("Entityids", "").toString();
 
-        name=pref.getString("Name", "").toString();
+        name = pref.getString("Name", "").toString();
 
-        rlmain=(RelativeLayout)findViewById(R.id.contents);
+        rlmain = (RelativeLayout) findViewById(R.id.contents);
 
-        lstcolarea=(ListView)findViewById(R.id.listcollectionarea);
+        lstcolarea = (ListView) findViewById(R.id.listcollectionarea);
 
-        tvtotalcol=(TextView)findViewById(R.id.textView28);
-        tvtotaloa=(TextView)findViewById(R.id.textView30);
+        tvtotalcol = (TextView) findViewById(R.id.textView28);
+        tvtotaloa = (TextView) findViewById(R.id.textView30);
 
 
-       toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // toolbar.setTitle(pref.getString("Name", "").toString()+" (50)");
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // toolbar.setTitle(pref.getString("Name", "").toString()+" (50)");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
 
@@ -151,14 +151,14 @@ public class Collection_Area_Activity extends AppCompatActivity {
         });
 
 
-        URL=siteurl+"/GetCollectionAreaByUserForCollectionApp?contractorId="+cid+"&userId="+uid+"&entityId="+eid+"&fromdate="+fromdate+"&todate="+todate+"&startindex="+String.valueOf(mPage)+"&noofrecords=10";
+        URL = siteurl + "/GetCollectionAreaByUserForCollectionApp?contractorId=" + cid + "&userId=" + uid + "&entityId=" + eid + "&fromdate=" + fromdate + "&todate=" + todate + "&startindex=" + String.valueOf(mPage) + "&noofrecords=10";
 
-        da=new SimpleAdapter(Collection_Area_Activity.this,areadetails,R.layout.layout_collection_area,new String[]{"AreaName","TodayCollection","Collection","Outstanding"},new int[]{R.id.textView31,R.id.textView43,R.id.textView47,R.id.textView45});
+        da = new SimpleAdapter(Collection_Area_Activity.this, areadetails, R.layout.layout_collection_area, new String[]{"AreaName", "TodayCollection", "Collection", "Outstanding"}, new int[]{R.id.textView31, R.id.textView43, R.id.textView47, R.id.textView45});
         lstcolarea.setAdapter(da);
 
         new JSONAsynk().execute(new String[]{URL});
 
-       tvtotalcol.setText(totalcollection);
+        tvtotalcol.setText(totalcollection);
 
         lstcolarea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -184,7 +184,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
             @Override
             public void loadMore(int page, int totalItemsCount) {
 
-                mPage = mPage+1;
+                mPage = mPage + 1;
 
                 URL = siteurl + "/GetCollectionAreaByUserForCollectionApp?contractorId=" + cid + "&userId=" + uid + "&entityId=" + eid + "&fromdate=" + fromdate + "&todate=" + todate + "&startindex=" + String.valueOf(mPage) + "&noofrecords=10";
 
@@ -200,12 +200,11 @@ public class Collection_Area_Activity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         finish();
     }
 
-    public JSONObject makeHttpRequest(String url){
+    public JSONObject makeHttpRequest(String url) {
         HttpParams httpParameters = new BasicHttpParams();
 
         int timeoutConnection = 500000;
@@ -216,19 +215,18 @@ public class Collection_Area_Activity extends AppCompatActivity {
         HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 
         DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);
-        HttpGet httppost=new HttpGet(url);
-        try{
+        HttpGet httppost = new HttpGet(url);
+        try {
             HttpResponse httpresponse = httpclient.execute(httppost);
             HttpEntity httpentity = httpresponse.getEntity();
             is = httpentity.getContent();
-        }catch (ClientProtocolException e){
+        } catch (ClientProtocolException e) {
             e.printStackTrace();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try{
-
+        try {
 
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -237,15 +235,13 @@ public class Collection_Area_Activity extends AppCompatActivity {
 
             StringBuilder sb = new StringBuilder();
             String line = null;
-            try{
-                if(reader!=null) {
+            try {
+                if (reader != null) {
 
                     while ((line = reader.readLine()) != null) {
                         sb.append(line);
                     }
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getApplicationContext(), "No data", Toast.LENGTH_SHORT).show();
                 }
 
@@ -253,7 +249,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
                 json = sb.toString();
 
                 // json= sb.toString().substring(0, sb.toString().length()-1);
-                try{
+                try {
                     jobj = new JSONObject(json);
 
                     // JSONArray jarrays=new JSONArray(json);
@@ -264,14 +260,14 @@ public class Collection_Area_Activity extends AppCompatActivity {
 
                     // jarr =(JSONArray)jsonparse.parse(json);
                     // jobj = jarr.getJSONObject(0);
-                }catch (JSONException e){
-                    Toast.makeText(getApplicationContext(), "**"+e, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "**" + e, Toast.LENGTH_SHORT).show();
                 }
-            }catch(IOException e){
-                Toast.makeText(getApplicationContext(), "**"+e, Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                Toast.makeText(getApplicationContext(), "**" + e, Toast.LENGTH_SHORT).show();
             }
-        }catch (UnsupportedEncodingException e){
-            Toast.makeText(getApplicationContext(), "**"+e, Toast.LENGTH_SHORT).show();
+        } catch (UnsupportedEncodingException e) {
+            Toast.makeText(getApplicationContext(), "**" + e, Toast.LENGTH_SHORT).show();
         }
        /* catch (ParseException e){
             Toast.makeText(MainActivity.this, "**"+e, Toast.LENGTH_SHORT).show();
@@ -280,9 +276,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
     }
 
 
-
-    private class JSONAsynk extends AsyncTask<String,String,JSONObject>
-    {
+    private class JSONAsynk extends AsyncTask<String, String, JSONObject> {
 
         private ProgressDialog pDialog;
         //public DotProgressBar dtprogoress;
@@ -290,17 +284,16 @@ public class Collection_Area_Activity extends AppCompatActivity {
         SpotsDialog spload;
 
 
-        JSONObject jsn1,jsn,jsnmain;
+        JSONObject jsn1, jsn, jsnmain;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            spload=new SpotsDialog(Collection_Area_Activity.this,R.style.Custom);
+            spload = new SpotsDialog(Collection_Area_Activity.this, R.style.Custom);
             spload.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             spload.setCancelable(true);
             spload.show();
-
 
 
         }
@@ -310,15 +303,14 @@ public class Collection_Area_Activity extends AppCompatActivity {
 
             try {
 
-                jsonobj=makeHttpRequest(params[0]);
-
+                jsonobj = makeHttpRequest(params[0]);
 
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return  jsonobj;
+            return jsonobj;
 
 
         }
@@ -327,15 +319,13 @@ public class Collection_Area_Activity extends AppCompatActivity {
         protected void onPostExecute(JSONObject json) {
             spload.dismiss();
 
-            try
-            {
-                String ucount="0",tc="0",toa="0";
+            try {
+                String ucount = "0", tc = "0", toa = "0";
 
                 //  Toast.makeText(CustomerListActivity.this, json.toString(), Toast.LENGTH_SHORT).show();
 
 
-                if(json.getString("status").toString().equals("True"))
-                {
+                if (json.getString("status").toString().equals("True")) {
                     rlmain.setVisibility(View.VISIBLE);
 
                     DecimalFormat format = new DecimalFormat();
@@ -346,7 +336,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
                     for (int i = 0; i < entityarray.length(); i++) {
                         JSONObject e = (JSONObject) entityarray.get(i);
 
-                        HashMap<String,String> map=new HashMap<>();
+                        HashMap<String, String> map = new HashMap<>();
 
                         String aid = e.getString("AreaId");
                         String aname = e.getString("AreaName");
@@ -357,13 +347,13 @@ public class Collection_Area_Activity extends AppCompatActivity {
                         String acolcount = e.getString("AreaCollectionCount");
 
 
-                        map.put("AreaId",aid);
-                        map.put("AreaName",aname+" - "+acolcount);
-                        map.put("AreaCode",acode);
-                        map.put("Outstanding",str+format.format(Double.parseDouble(aout)));
-                        map.put("Collection",str+format.format(Double.parseDouble(acol)));
-                        map.put("TodayCollection",str+format.format(Double.parseDouble(todaycol)));
-                        map.put("AreaCollectionCount",str+acolcount);
+                        map.put("AreaId", aid);
+                        map.put("AreaName", aname + " - " + acolcount);
+                        map.put("AreaCode", acode);
+                        map.put("Outstanding", str + format.format(Double.parseDouble(aout)));
+                        map.put("Collection", str + format.format(Double.parseDouble(acol)));
+                        map.put("TodayCollection", str + format.format(Double.parseDouble(todaycol)));
+                        map.put("AreaCollectionCount", str + acolcount);
 
                         areadetails.add(map);
 
@@ -377,22 +367,20 @@ public class Collection_Area_Activity extends AppCompatActivity {
 
                     lstcolarea.setTextFilterEnabled(true);
 
-                     ucount=json.getString("UserCollectionCount").toString();
+                    ucount = json.getString("UserCollectionCount").toString();
 
-                     toa=json.getString("TotalOutstanding").toString();
-                     tc=json.getString("TotalCollection").toString();
+                    toa = json.getString("TotalOutstanding").toString();
+                    tc = json.getString("TotalCollection").toString();
 
 
-                    tvtotaloa.setText(str+format.format(Double.parseDouble(toa)));
-                    tvtotalcol.setText(str+format.format(Double.parseDouble(tc)));
+                    tvtotaloa.setText(str + format.format(Double.parseDouble(toa)));
+                    tvtotalcol.setText(str + format.format(Double.parseDouble(tc)));
 
-                    toolbar.setTitle(name+" ("+ucount+")");
+                    toolbar.setTitle(name + " (" + ucount + ")");
 
                     // Toast.makeText(getContext(),s1+"--"+s2+"--"+s3+"--"+s4+"--"+s5+"--"+s6+"--"+s7+"--"+s8, Toast.LENGTH_SHORT).show();
 
-                }
-                else
-                {
+                } else {
                    /* DecimalFormat format = new DecimalFormat();
                     format.setDecimalSeparatorAlwaysShown(false);
 
@@ -407,14 +395,10 @@ public class Collection_Area_Activity extends AppCompatActivity {
                 }
 
 
-            }
-            catch (JSONException e)
-            {
-                Toast.makeText(Collection_Area_Activity.this, "Error:++"+e, Toast.LENGTH_SHORT).show();
-            }
-            catch (Exception ex)
-            {
-                Toast.makeText(Collection_Area_Activity.this, "Error:++"+ex, Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                Toast.makeText(Collection_Area_Activity.this, "Error:++" + e, Toast.LENGTH_SHORT).show();
+            } catch (Exception ex) {
+                Toast.makeText(Collection_Area_Activity.this, "Error:++" + ex, Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -436,15 +420,13 @@ public class Collection_Area_Activity extends AppCompatActivity {
                 LayoutInflater li = getLayoutInflater();
                 final View v = li.inflate(R.layout.dialog_date_search, null);
 
-                edtfrom=(EditText)v.findViewById(R.id.edtfromdate);
-                edtto=(EditText)v.findViewById(R.id.edttodate);
+                edtfrom = (EditText) v.findViewById(R.id.edtfromdate);
+                edtto = (EditText) v.findViewById(R.id.edttodate);
 
-                if(!tempfrom.equals("-") && !tempto.equals("-")) {
+                if (!tempfrom.equals("-") && !tempto.equals("-")) {
                     edtto.setText(tempto);
                     edtfrom.setText(tempfrom);
-                }
-                else
-                {
+                } else {
                     edtto.setText((cmonth + 1) + "/" + day + "/" + year);
                     edtfrom.setText((cmonth + 1) + "/" + "1" + "/" + year);
                 }
@@ -470,48 +452,42 @@ public class Collection_Area_Activity extends AppCompatActivity {
                 });
 
 
-                MDDialog.Builder mdalert=new MDDialog.Builder(Collection_Area_Activity.this);
+                MDDialog.Builder mdalert = new MDDialog.Builder(Collection_Area_Activity.this);
                 mdalert.setContentView(v);
                 mdalert.setTitle("Filter By Date");
                 mdalert.setPositiveButton("SEARCH", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                      Date to=new Date(edtto.getText().toString());
-                        Date from=new Date(edtfrom.getText().toString());
+                        Date to = new Date(edtto.getText().toString());
+                        Date from = new Date(edtfrom.getText().toString());
 
-                        tempfrom=edtfrom.getText().toString();
-                        tempto=edtto.getText().toString();
+                        tempfrom = edtfrom.getText().toString();
+                        tempto = edtto.getText().toString();
 
-                        if(to.after(from))
-                        {
+                        if (to.after(from)) {
                             areadetails.clear();
 
-                            fromdate=edtfrom.getText().toString();
-                            todate=edtto.getText().toString();
+                            fromdate = edtfrom.getText().toString();
+                            todate = edtto.getText().toString();
 
                             //URL=siteurl+"/GetCollectionAreaByUserForCollectionApp?contractorId="+cid+"&userId="+uid+"&entityId="+eid+"&fromdate="+fromdate+"&todate="+todate;
-                            mPage=0;
+                            mPage = 0;
                             URL = siteurl + "/GetCollectionAreaByUserForCollectionApp?contractorId=" + cid + "&userId=" + uid + "&entityId=" + eid + "&fromdate=" + fromdate + "&todate=" + todate + "&startindex=" + String.valueOf(mPage) + "&noofrecords=10";
                             new JSONAsynk().execute(new String[]{URL});
-                        }
-                        else if(to.equals(from))
-                        {
+                        } else if (to.equals(from)) {
                             areadetails.clear();
 
-                            fromdate=edtfrom.getText().toString();
-                            todate=edtto.getText().toString();
+                            fromdate = edtfrom.getText().toString();
+                            todate = edtto.getText().toString();
 
-                           // URL=siteurl+"/GetCollectionAreaByUserForCollectionApp?contractorId="+cid+"&userId="+uid+"&entityId="+eid+"&fromdate="+fromdate+"&todate="+todate;
-                            mPage=0;
+                            // URL=siteurl+"/GetCollectionAreaByUserForCollectionApp?contractorId="+cid+"&userId="+uid+"&entityId="+eid+"&fromdate="+fromdate+"&todate="+todate;
+                            mPage = 0;
                             URL = siteurl + "/GetCollectionAreaByUserForCollectionApp?contractorId=" + cid + "&userId=" + uid + "&entityId=" + eid + "&fromdate=" + fromdate + "&todate=" + todate + "&startindex=" + String.valueOf(mPage) + "&noofrecords=10";
                             new JSONAsynk().execute(new String[]{URL});
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(Collection_Area_Activity.this, "Enter Valid Filter Dates..", Toast.LENGTH_SHORT).show();
                         }
-
 
 
                     }
@@ -519,7 +495,6 @@ public class Collection_Area_Activity extends AppCompatActivity {
                 mdalert.setNegativeButton("CANCEL", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
 
 
                     }
@@ -530,7 +505,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
                 mdalert.setBackgroundCornerRadius(5);
                 mdalert.setCancelable(false);
 
-                MDDialog dialog=mdalert.create();
+                MDDialog dialog = mdalert.create();
                 dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
                 dialog.show();
 
@@ -636,8 +611,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
         if (id == 999) {
             return new DatePickerDialog(this, myDateListener, year, cmonth, day);
         }
-        if(id==888)
-        {
+        if (id == 888) {
             return new DatePickerDialog(this, myDateListeners, year, cmonth, day);
         }
         return null;
@@ -651,7 +625,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
             // arg2 = month
             // arg3 = day
 
-            edtfrom.setText((arg2+1)+"/"+arg3+"/"+arg1);
+            edtfrom.setText((arg2 + 1) + "/" + arg3 + "/" + arg1);
 
         }
     };
@@ -664,7 +638,7 @@ public class Collection_Area_Activity extends AppCompatActivity {
             // arg2 = month
             // arg3 = day
 
-            edtto.setText((arg2+1)+"/"+arg3+"/"+arg1);
+            edtto.setText((arg2 + 1) + "/" + arg3 + "/" + arg1);
 
         }
     };

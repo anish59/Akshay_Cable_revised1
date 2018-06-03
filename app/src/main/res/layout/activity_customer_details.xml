@@ -972,7 +972,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="end"
-            android:background="#ffffe2"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <com.baoyz.swipemenulistview.SwipeMenuListView
@@ -980,7 +980,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/fab"
-                android:background="#ffffe2"
+                android:background="@color/white"
                 android:divider="@null"
                 android:dividerHeight="0dp"
                 android:padding="5dp" />
@@ -1007,7 +1007,7 @@
                 android:layout_margin="@dimen/fab_margin"
                 android:src="@drawable/ic_add_white_24dp"
                 android:tint="@android:color/white"
-                app:backgroundTint="@color/ToolbarColor"
+                app:backgroundTint="@color/colorPrimaryDark"
                 app:elevation="10dp"
                 app:fabSize="normal" />
 

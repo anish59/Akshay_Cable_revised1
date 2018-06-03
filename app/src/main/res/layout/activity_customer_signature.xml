@@ -30,10 +30,9 @@
 
                 <TextView
                     android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:text="10000"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
@@ -140,7 +139,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/ToolbarColor"
+            android:background="@color/colorPrimaryDark"
             app:collapseIcon="@drawable/ic_arrow_back_white_24dp"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
