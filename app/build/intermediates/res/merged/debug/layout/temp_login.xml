@@ -8,37 +8,24 @@
     android:orientation="vertical"
     android:paddingTop="30dp">
 
-    <RelativeLayout
-        android:id="@+id/layoutSplash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="20dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/orange_cableplus" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView" />
-    </RelativeLayout>
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/orange_cableplus"
+        android:transitionName="appLogo" />
 
     <LinearLayout
         android:id="@+id/layoutLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/layoutSplash"
-        android:gravity="center"
+        android:layout_below="@+id/imageView"
+        android:animateLayoutChanges="true"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/editText"

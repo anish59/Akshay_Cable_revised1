@@ -40,13 +40,8 @@
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:windowSoftInputMode="adjustPan" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
@@ -357,7 +352,14 @@
 
         <activity android:name=".ComplainSignatureActivity" />
         <activity android:name=".Map_User_Tracking" />
-        <activity android:name=".CustomerCommentList"></activity>
+        <activity android:name=".CustomerCommentList" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

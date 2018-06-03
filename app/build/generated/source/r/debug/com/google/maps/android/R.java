@@ -89,9 +89,9 @@ public final class R {
         public static final int google_play_services_version = 0x7f0d0006;
     }
     public static final class layout {
-        public static final int amu_info_window = 0x7f04003e;
-        public static final int amu_text_bubble = 0x7f04003f;
-        public static final int amu_webview = 0x7f040040;
+        public static final int amu_info_window = 0x7f04003f;
+        public static final int amu_text_bubble = 0x7f040040;
+        public static final int amu_webview = 0x7f040041;
     }
     public static final class raw {
         public static final int amu_ballon_gx_prefix = 0x7f080000;

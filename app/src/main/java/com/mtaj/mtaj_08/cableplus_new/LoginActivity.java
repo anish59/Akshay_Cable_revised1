@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
@@ -85,7 +86,6 @@ public class LoginActivity extends AppCompatActivity implements ConnectivityRece
     String token = "-";
     private RelativeLayout layoutMain;
     private ImageView imageView;
-    private RelativeLayout layoutSplash;
     private EditText editText;
     private ShowHidePasswordEditText passwordInTextInputLayout;
     private EditText editText2;
@@ -102,43 +102,14 @@ public class LoginActivity extends AppCompatActivity implements ConnectivityRece
 
         setContentView(R.layout.temp_login);
         this.layoutLogin = (LinearLayout) findViewById(R.id.layoutLogin);
-        this.layoutSplash = (RelativeLayout) findViewById(R.id.layoutSplash);
         this.layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
-
-        this.layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
-       /* layoutMain.setBackground(Utils.getGradientDrawable(this,
-                R.color.colorPrimaryLight, R.color.colorPrimary, R.color.colorPrimaryDark,
-                GradientDrawable.Orientation.BR_TL));*/
-
-
-        setLayoutAnimations();
 
         init();
 
+        layoutLogin.setVisibility(View.VISIBLE);
 
     }
 
-    private void setLayoutAnimations() {
-        Utils.animateFadeView(this, layoutSplash, 5, new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-
-            }
-
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                layoutSplash.setVisibility(View.GONE);
-                layoutLogin.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
 
     private void init() {
         LocalBroadcastManager.getInstance(this).registerReceiver(tokenReceiver,
@@ -146,7 +117,6 @@ public class LoginActivity extends AppCompatActivity implements ConnectivityRece
 
         token = FirebaseInstanceId.getInstance().getToken();
 
-        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //checkConnection();
 
@@ -155,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements ConnectivityRece
             StrictMode.setThreadPolicy(policy);
         }
 
-        SharedPreferences pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        /*SharedPreferences pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         //  SharedPreferences.Editor editor=pref.edit();
 
         if (pref.getString("LoginStatus", "").toString().equals("login")) {
@@ -164,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements ConnectivityRece
 
             finish();
         }
-
+*/
 
         edtusername = (EditText) findViewById(R.id.editText);
         edtpassword = (EditText) findViewById(R.id.passwordInTextInputLayout);
