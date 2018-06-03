@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey_300"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    >
-    <requestFocus/>
+    android:focusableInTouchMode="true">
+
+    <requestFocus />
     <!-- Header aligned to top -->
 
     <RelativeLayout
@@ -17,21 +18,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/ToolbarColor"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:collapseIcon="@drawable/ic_arrow_back_white_24dp" >
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            app:collapseIcon="@drawable/ic_arrow_back_white_24dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
     </RelativeLayout>
 
 
     <!-- Footer aligned to bottom -->
-
 
 
     <RelativeLayout
@@ -44,6 +43,7 @@
 
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -51,66 +51,67 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark">
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <TextView
+                    android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Total Collection"
-                    android:id="@+id/textView27"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/textsize_14.0"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:text="Total Collection"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/textsize_14.0" />
 
                 <TextView
+                    android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="10000"
-                    android:id="@+id/textView28"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/textsize_20"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="1"
-                android:background="@color/ToolbarColor">
+                android:background="@color/ToolbarColor"
+                android:orientation="vertical"
+                android:padding="4dp">
 
 
                 <TextView
+                    android:id="@+id/textView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Total Outstanding"
-                    android:id="@+id/textView29"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/textsize_14.0"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:text="Total Outstanding"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/textsize_14.0" />
 
                 <TextView
+                    android:id="@+id/textView30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="0"
-                    android:id="@+id/textView30"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/textsize_20"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -119,12 +120,12 @@
     </RelativeLayout>
 
 
-
     <!-- Content below header and above footer -->
 
 
-
     <RelativeLayout
+
+        android:id="@+id/rlmain"
 
         android:layout_width="fill_parent"
 
@@ -133,39 +134,35 @@
         android:layout_above="@id/footer"
 
         android:layout_below="@id/header"
-
         android:focusable="false"
         android:focusableInTouchMode="true"
-        android:visibility="gone"
-        android:id="@+id/rlmain">
+        android:visibility="gone">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView99"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="No Customer Outstanding Remaining!!!"
-                android:id="@+id/textView99"
                 android:layout_gravity="center"
-                android:textSize="@dimen/textsize_16"
                 android:layout_marginTop="20dp"
-                android:visibility="gone"
-               />
+                android:text="No Customer Outstanding Remaining!!!"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/textsize_16"
+                android:visibility="gone" />
 
             <ListView
+                android:id="@+id/listcustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/listcustomer"
                 android:divider="@null"
-                android:dividerHeight="0dp"/>
+                android:dividerHeight="0dp" />
         </LinearLayout>
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>

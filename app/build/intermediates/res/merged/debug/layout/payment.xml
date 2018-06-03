@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    android:visibility="gone">
+    android:visibility="visible">
     <!-- Header aligned to top -->
 
     <!-- Footer aligned to bottom -->
@@ -27,7 +27,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/textView27"
@@ -59,7 +60,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/ToolbarColor"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/textView29"
